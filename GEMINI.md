@@ -40,6 +40,14 @@ src/
   stores/            ← Zustand stores
   types/             ← TypeScript types and interfaces
 
+## Routing
+- `/` — product landing page (marketing)
+- `/login` — auth: login
+- `/signup` — auth: signup
+- `/admin` — admin dashboard (protected)
+- `/admin/[section]` — each content section editor (protected)
+- `/portfolio/[uid]` — public portfolio for a specific user (public, no auth)
+
 ## Rules the agent must always follow
 - Never hardcode secrets, API keys, or credentials — always use env variables
 - Always use server components by default; only add "use client" when interaction requires it
