@@ -1,6 +1,6 @@
 'use client';
 
-import { useForm } from 'react-hook-form';
+import { useForm, type SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
@@ -54,13 +54,13 @@ export function AboutForm({ initialData }: AboutFormProps) {
       location: initialData?.location ?? '',
       availability_status:
         (initialData?.availability_status as AboutFormValues['availability_status']) ?? 'open',
-      years_of_experience: initialData?.years_of_experience ?? undefined,
-    },
+      years_of_experience: (initialData?.years_of_experience as number) ?? undefined,
+    } as AboutFormValues,
   });
 
   const bioValue = watch('bio');
 
-  function onSubmit(data: AboutFormValues) {
+  const onSubmit: SubmitHandler<AboutFormValues> = (data) => {
     setFeedback(null);
 
     startTransition(async () => {
@@ -76,7 +76,7 @@ export function AboutForm({ initialData }: AboutFormProps) {
         });
       }
     });
-  }
+  };
 
   return (
     <form
@@ -179,7 +179,9 @@ export function AboutForm({ initialData }: AboutFormProps) {
           max={60}
           placeholder="e.g. 5"
           className="w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/30"
-          {...register('years_of_experience')}
+          {...register('years_of_experience', {
+            setValueAs: (v) => (v === '' ? undefined : parseInt(v, 10)),
+          })}
         />
         {errors.years_of_experience && (
           <p className="text-xs text-destructive">

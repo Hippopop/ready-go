@@ -1,5 +1,6 @@
 'use server';
 
+import { z } from 'zod';
 import { createClient } from '@/lib/supabase/server';
 import { aboutSchema, socialLinkSchema } from '@/lib/validations/about';
 import type { AboutFormValues, SocialLinkFormValues } from '@/lib/validations/about';
@@ -69,7 +70,7 @@ export async function upsertAbout(
     if (!parsed.success) {
       return {
         success: false,
-        error: parsed.error.errors.map((e) => e.message).join(', '),
+        error: parsed.error.issues.map((e: z.ZodIssue) => e.message).join(', '),
       };
     }
 
@@ -82,9 +83,7 @@ export async function upsertAbout(
         location: parsed.data.location || null,
         availability_status: parsed.data.availability_status,
         years_of_experience:
-          parsed.data.years_of_experience === '' || parsed.data.years_of_experience === undefined
-            ? null
-            : Number(parsed.data.years_of_experience),
+          parsed.data.years_of_experience ?? null,
         updated_at: new Date().toISOString(),
       },
       { onConflict: 'user_id' },
@@ -140,7 +139,7 @@ export async function addSocialLink(
     if (!parsed.success) {
       return {
         success: false,
-        error: parsed.error.errors.map((e) => e.message).join(', '),
+        error: parsed.error.issues.map((e: z.ZodIssue) => e.message).join(', '),
       };
     }
 

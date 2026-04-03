@@ -22,6 +22,82 @@ It has two surfaces:
 - **Deployment**: Vercel
 - **Package manager**: npm
 
+## Theme Engine — Rules every agent must follow
+
+The theme engine is the core differentiator of this product. Every UI element in both
+the admin panel and the portfolio website must consume the theme CSS variables.
+Never use hardcoded colors, fonts, or border radius values anywhere.
+
+### CSS variables available on `:root`
+```
+--color-primary        → primary brand color
+--color-accent         → secondary/accent color
+--color-background     → page background
+--color-surface        → card and panel backgrounds
+--color-text           → body text color
+--font-heading         → heading font family (Google Font)
+--font-body            → body font family (Google Font)
+--border-radius        → global border radius (0px / 4px / 8px / 16px / 9999px)
+--border-radius-sm     → same value, used on smaller elements
+--spacing-unit         → base spacing (0.75rem / 1rem / 1.5rem)
+--transition-speed     → animation duration (0ms / 200ms / 400ms)
+--transition-easing    → animation easing curve
+```
+
+### Tailwind classes that map to CSS variables (always use these)
+```
+bg-primary             → var(--color-primary)
+bg-accent              → var(--color-accent)
+bg-background          → var(--color-background)
+bg-surface             → var(--color-surface)
+text-app-text          → var(--color-text)
+font-heading           → var(--font-heading)
+font-body              → var(--font-body)
+rounded-[var(--border-radius)]     → theme border radius
+p-[var(--spacing-unit)]            → theme spacing
+transition-all duration-[var(--transition-speed)] ease-[var(--transition-easing)]
+```
+
+### Rules
+- NEVER use hardcoded Tailwind color classes like `bg-indigo-600`, `text-gray-900`,
+  `bg-white`, `bg-gray-50` on any visible UI element. Always use the theme variables above.
+- NEVER use hardcoded `rounded-md`, `rounded-lg`, `rounded-xl` on cards, buttons,
+  inputs, or panels. Use `rounded-[var(--border-radius)]` instead.
+  Exceptions: `rounded-full` is allowed ONLY for avatars, radio buttons, and badge pills.
+- NEVER use hardcoded font families. Use `font-heading` for headings (h1–h4)
+  and `font-body` for everything else.
+- ALL hover/focus transitions must use `duration-[var(--transition-speed)]`
+  and `ease-[var(--transition-easing)]` so animation style is respected.
+- Dark mode is handled via Tailwind's `dark:` prefix + the `dark` class on `<html>`.
+  The ThemeProvider sets this class automatically based on `color_mode`.
+  Use `dark:` variants where needed for dark mode support.
+- The `<body>` tag must always have: `bg-background text-app-text font-body`
+- Every new page layout wrapper must have: `bg-background min-h-screen`
+- Every new card/panel must have: `bg-surface rounded-[var(--border-radius)]`
+- Every new primary button must have:
+  `bg-primary text-white rounded-[var(--border-radius)]
+   transition-all duration-[var(--transition-speed)] ease-[var(--transition-easing)]
+   hover:opacity-90 active:scale-95`
+- Every new input/textarea must have:
+  `bg-surface border border-app-text/20 rounded-[var(--border-radius)]
+   text-app-text font-body focus:border-primary`
+
+### Where the theme is initialized
+- Server-side: `src/app/layout.tsx` injects a `<style id="ready-go-theme">` tag
+  with `:root { ... }` CSS variables on every page load (zero flash)
+- Client-side: `src/components/theme-provider.tsx` hydrates the Zustand store
+  and keeps the style tag in sync with live changes
+- Zustand store: `src/stores/theme-store.ts`
+  - `setTheme(theme)` — silent initialization, does NOT mark dirty
+  - `updateTheme(partial)` — user-triggered change, marks isDirty = true
+  - `applyPreset(name)` — applies a full preset, marks isDirty = true
+
+### Portfolio pages must also consume the theme
+When building the public portfolio (`/portfolio/[uid]`), fetch the user's theme
+using `getThemeByUserId(uid)` (server action, no auth required) and inject it
+the same way as the admin — via a `<style>` tag scoped to `:root` on that page.
+This ensures the visitor sees the portfolio owner's chosen theme.
+
 ## Folder structure to follow
 src/
   app/
@@ -65,8 +141,8 @@ SUPABASE_SERVICE_ROLE_KEY=
 NEXT_PUBLIC_APP_URL=
 
 ## Current phase
-Phase 1 — Foundation. We are setting up the project structure, Supabase connection, and auth.
-We have NOT started building UI yet.
+Phase 3 — Public portfolio website (single scrolling page).
+Admin panel and theme engine are complete and working.
 
 ## Accounts and services used
 - Supabase: free tier (database + auth + storage)

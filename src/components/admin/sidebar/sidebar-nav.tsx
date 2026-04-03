@@ -13,11 +13,13 @@ import {
   PenSquare,
   Trophy,
   GitBranch,
+  LayoutList,
 } from "lucide-react";
 import { NavItem } from "./nav-item";
 
 const coreNavItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/admin/sections", label: "Sections", icon: LayoutList },
   { href: "/admin/theme", label: "Theme", icon: Palette },
   { href: "/admin/hero", label: "Hero", icon: User },
   { href: "/admin/about", label: "About", icon: User },

@@ -19,16 +19,12 @@ export const aboutSchema = z.object({
     .max(200, 'Location must be under 200 characters')
     .optional()
     .or(z.literal('')),
-  availability_status: z.enum(AVAILABILITY_STATUSES, {
-    required_error: 'Availability status is required',
-  }),
-  years_of_experience: z.coerce
+  availability_status: z.enum(AVAILABILITY_STATUSES),
+  years_of_experience: z
     .number()
-    .int('Must be a whole number')
-    .min(0, 'Cannot be negative')
+    .min(0, 'Must be at least 0')
     .max(60, 'Must be 60 or less')
-    .optional()
-    .or(z.literal('')),
+    .optional(),
 });
 
 export type AboutFormValues = z.infer<typeof aboutSchema>;

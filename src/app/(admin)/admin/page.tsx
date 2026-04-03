@@ -36,15 +36,31 @@ export default async function AdminDashboardPage() {
 
   return (
     <div className="space-y-8 animate-in fade-in duration-500">
-      {/* Welcome */}
-      <div className="flex flex-col gap-1">
-        <h1 className="text-3xl font-bold tracking-tight text-foreground">
-          Welcome back, {user?.email?.split('@')[0] ?? 'User'}
-        </h1>
-        <p className="text-muted-foreground">
-          Your portfolio is looking good! What would you like to update today?
-        </p>
+      {/* Welcome & Live Link Banner */}
+      <div className="relative overflow-hidden rounded-[var(--border-radius)] border border-primary/20 bg-primary/5 p-8 md:p-10 shadow-sm">
+        <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div className="space-y-2">
+            <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground font-heading">
+              Welcome back, {user?.email?.split('@')[0] ?? 'User'}
+            </h1>
+            <p className="text-muted-foreground text-lg font-body max-w-xl">
+              Your professional presence is ready. Keep it fresh by updating your latest projects and achievements.
+            </p>
+          </div>
+          <Link 
+            href={`/portfolio/${user?.id}`} 
+            target="_blank"
+            className="inline-flex items-center justify-center gap-2 rounded-[var(--border-radius)] bg-primary px-8 py-4 text-base font-bold text-white shadow-lg transition-all duration-[var(--transition-speed)] hover:opacity-90 active:scale-95 whitespace-nowrap"
+          >
+            View My Portfolio →
+          </Link>
+        </div>
+        
+        {/* Decorative elements */}
+        <div className="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-primary/10 blur-3xl" />
+        <div className="absolute -left-16 -bottom-16 h-64 w-64 rounded-full bg-primary/5 blur-3xl" />
       </div>
+
 
       {/* Stats / Status Overview (Placeholder for now but looks better) */}
       <div className="grid gap-4 md:grid-cols-3">
