@@ -13,7 +13,7 @@ It has two surfaces:
 4. Resume download — visitors can download the selected resume template as PDF
 
 ## Tech stack — do not deviate from this
-- **Framework**: Next.js 15, App Router, TypeScript — strict mode always on
+- **Framework**: Next.js 16, App Router, TypeScript — strict mode always on
 - **Styling**: Tailwind CSS v4 + shadcn/ui components
 - **Database + Auth + Storage**: Supabase (PostgreSQL, Supabase Auth, Supabase Storage)
 - **State management**: Zustand — for theme state and live preview sync
@@ -48,6 +48,7 @@ src/
 - All images go through Supabase Storage — never store binary in the database
 - The theme engine must use CSS custom properties (--color-primary, --font-heading, etc.) so both admin and portfolio share the same design tokens
 - Never install a new package without explaining why in a comment or message first
+- Use `src/proxy.ts` (not `middleware.ts`) for request interception — Next.js 16 convention. Export a named `proxy` function, not `middleware`
 
 ## Environment variables needed (never commit these)
 NEXT_PUBLIC_SUPABASE_URL=
