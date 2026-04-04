@@ -17,6 +17,7 @@ interface PortfolioNavProps {
 }
 
 const SECTION_LABELS: Record<string, string> = {
+  hero: 'Hero',
   about: 'About',
   experience: 'Experience',
   projects: 'Projects',
@@ -34,7 +35,7 @@ export default function PortfolioNav({ profile, sectionSettings, uid, hasResume 
   const [visible, setVisible] = useState(true);
   const [activeSection, setActiveSection] = useState<string>('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
+
   const lastScrollY = useRef(0);
   const navRef = useRef<HTMLElement>(null);
 
@@ -54,7 +55,7 @@ export default function PortfolioNav({ profile, sectionSettings, uid, hasResume 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       // Sticky background
       setIsScrolled(currentScrollY > 20);
 
@@ -64,7 +65,7 @@ export default function PortfolioNav({ profile, sectionSettings, uid, hasResume 
       } else {
         setVisible(true); // Scrolling up
       }
-      
+
       lastScrollY.current = currentScrollY;
     };
 
@@ -89,7 +90,7 @@ export default function PortfolioNav({ profile, sectionSettings, uid, hasResume 
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
-    
+
     // Always observe hero if we can find it (it doesn't have an ID in the wrapper but we'll manually watch it)
     const sections = ['hero', ...navLinks.map(l => l.id)];
     sections.forEach(id => {
@@ -123,7 +124,7 @@ export default function PortfolioNav({ profile, sectionSettings, uid, hasResume 
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo / Name */}
-          <Link 
+          <Link
             href={`/portfolio/${uid}`}
             className="font-heading font-bold text-xl text-app-text hover:text-primary transition-colors"
           >
@@ -148,7 +149,8 @@ export default function PortfolioNav({ profile, sectionSettings, uid, hasResume 
             {hasResume && (
               <Link
                 href={`/api/resume/${uid}/download`}
-                className="flex items-center gap-2 border border-primary text-primary rounded-[var(--border-radius)] px-4 py-2 text-sm font-body hover:bg-primary/5 transition-all duration-[var(--transition-speed)] ease-[var(--transition-easing)]"
+                download
+                className="flex items-center gap-2 border border-primary text-primary rounded-(--border-radius) px-4 py-2 text-sm font-body hover:bg-primary/5 transition-all duration-(--transition-speed) ease-(--transition-easing)"
               >
                 <Download className="w-4 h-4" />
                 Resume
@@ -195,12 +197,13 @@ export default function PortfolioNav({ profile, sectionSettings, uid, hasResume 
               {link.label}
             </button>
           ))}
-          
+
           {hasResume && (
             <Link
               href={`/api/resume/${uid}/download`}
+              download
               onClick={() => setMobileMenuOpen(false)}
-              className="mt-4 flex items-center gap-2 bg-primary text-white rounded-[var(--border-radius)] px-8 py-4 text-xl font-body hover:opacity-90 transition-all duration-[var(--transition-speed)]"
+              className="mt-4 flex items-center gap-2 bg-primary text-white rounded-(--border-radius) px-8 py-4 text-xl font-body hover:opacity-90 transition-all duration-(--transition-speed)"
             >
               <Download className="w-6 h-6" />
               Download Resume

@@ -14,6 +14,7 @@ import {
   Trophy,
   GitBranch,
   LayoutList,
+  FileText,
 } from "lucide-react";
 import { NavItem } from "./nav-item";
 
@@ -35,6 +36,7 @@ const secondaryNavItems = [
   { href: "/admin/blog", label: "Blog", icon: PenSquare },
   { href: "/admin/awards", label: "Awards", icon: Trophy },
   { href: "/admin/open-source", label: "Open Source", icon: GitBranch },
+  { href: "/admin/resume", label: "Resume", icon: FileText },
 ];
 
 export function SidebarNav() {

@@ -21,13 +21,11 @@ import { Tables } from '@/types/database'
 type Hero = Tables<'hero'>
 type Profile = Tables<'profiles'>
 type SocialLink = Tables<'social_links'>
-type ResumeSettings = Tables<'resume_settings'>
 
 interface HeroSectionProps {
   hero: Hero | null
   profile: Profile | null
   socialLinks: SocialLink[]
-  resumeSettings: ResumeSettings | null
   uid: string
 }
 
@@ -45,7 +43,6 @@ export default function HeroSection({
   hero, 
   profile, 
   socialLinks, 
-  resumeSettings,
   uid
 }: HeroSectionProps) {
   const [typingIndex, setTypingIndex] = useState(0)
@@ -112,11 +109,12 @@ export default function HeroSection({
             
             {hero.cta_secondary_text && (
               <Link
-                href={resumeSettings?.default_template ? `/api/resume/${uid}/download` : '#about'}
+                href={`/api/resume/${uid}/download`}
+                download
                 className="border-2 border-primary text-primary px-8 py-3 rounded-[var(--border-radius)] font-body font-medium transition-all duration-[var(--transition-speed)] ease-[var(--transition-easing)] hover:bg-primary/5 active:scale-95 flex items-center gap-2"
               >
                 {hero.cta_secondary_text}
-                {resumeSettings?.default_template && <FileDown className="w-4 h-4" />}
+                <FileDown className="w-4 h-4" />
               </Link>
             )}
           </div>

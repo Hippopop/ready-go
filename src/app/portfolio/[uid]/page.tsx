@@ -70,17 +70,20 @@ export default async function PortfolioPage({ params }: { params: Promise<{ uid:
         />
 
         <main>
-          {/* Hero is always first and full-screen, no SectionWrapper */}
-          <HeroSection
-            hero={data.hero}
-            profile={data.profile}
-            socialLinks={data.socialLinks}
-            resumeSettings={data.resumeSettings}
-            uid={uid}
-          />
           {/* Render sections based on visibility + order */}
           {visibleSections.map(sectionKey => {
             switch (sectionKey) {
+              case 'hero':
+                return data.hero ? (
+                  <SectionWrapper key="hero" id="hero">
+                    <HeroSection
+                      hero={data.hero}
+                      profile={data.profile}
+                      socialLinks={data.socialLinks}
+                      uid={uid}
+                    />
+                  </SectionWrapper>
+                ) : null
               case 'about':
                 return data.about ? (
                   <SectionWrapper key="about" id="about">
