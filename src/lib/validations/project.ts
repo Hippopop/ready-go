@@ -13,27 +13,15 @@ export const projectSchema = z.object({
     .optional()
     .or(z.literal('')),
 
-  cover_image_url: z
-    .string()
-    .url('Please enter a valid URL')
-    .optional()
-    .or(z.literal('')),
+  cover_image_url: z.string().url('Please enter a valid URL').nullish().or(z.literal('')),
 
-  live_url: z
-    .string()
-    .url('Please enter a valid URL')
-    .optional()
-    .or(z.literal('')),
+  live_url: z.string().url('Please enter a valid URL').nullish().or(z.literal('')),
 
-  github_url: z
-    .string()
-    .url('Please enter a valid URL')
-    .optional()
-    .or(z.literal('')),
+  github_url: z.string().url('Please enter a valid URL').nullish().or(z.literal('')),
 
-  tech_stack: z.array(z.string()).optional().default([]),
+  tech_stack: z.array(z.string()),
 
-  is_featured: z.boolean().default(false),
+  is_featured: z.boolean(),
 });
 
 export type ProjectFormValues = z.infer<typeof projectSchema>;

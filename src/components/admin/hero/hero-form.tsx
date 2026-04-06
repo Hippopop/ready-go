@@ -60,13 +60,13 @@ export function HeroForm({ defaultValues }: HeroFormProps) {
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
       {/* Status messages */}
       {status.type === 'success' && (
-        <p className="rounded-[var(--border-radius)] bg-emerald-500/10 px-3 py-2 text-sm font-medium text-emerald-600 dark:text-emerald-400">
+        <p className="rounded-(--border-radius) bg-emerald-500/10 px-3 py-2 text-sm font-medium text-emerald-600 dark:text-emerald-400">
           Hero section saved!
         </p>
       )}
 
       {status.type === 'error' && (
-        <p className="rounded-[var(--border-radius)] bg-destructive/10 px-3 py-2 text-sm text-destructive">
+        <p className="rounded-(--border-radius) bg-destructive/10 px-3 py-2 text-sm text-destructive">
           {status.message}
         </p>
       )}
@@ -83,7 +83,7 @@ export function HeroForm({ defaultValues }: HeroFormProps) {
           id="headline"
           type="text"
           placeholder="Hi, I'm Jane — a Full-Stack Developer"
-          className="w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+          className="w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
           {...register('headline')}
         />
         {errors.headline && (
@@ -104,7 +104,7 @@ export function HeroForm({ defaultValues }: HeroFormProps) {
           id="subheadline"
           type="text"
           placeholder="Building modern web experiences"
-          className="w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+          className="w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
           {...register('subheadline')}
         />
         {errors.subheadline && (
@@ -127,7 +127,7 @@ export function HeroForm({ defaultValues }: HeroFormProps) {
           id="tagline"
           type="text"
           placeholder="Turning caffeine into code since 2015"
-          className="w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+          className="w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
           {...register('tagline')}
         />
         {errors.tagline && (
@@ -148,7 +148,7 @@ export function HeroForm({ defaultValues }: HeroFormProps) {
           id="profile_image_url"
           type="url"
           placeholder="https://example.com/your-photo.jpg"
-          className="w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+          className="w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
           {...register('profile_image_url')}
         />
         {errors.profile_image_url && (
@@ -171,7 +171,7 @@ export function HeroForm({ defaultValues }: HeroFormProps) {
             id="cta_primary_text"
             type="text"
             placeholder="Hire Me"
-            className="w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+            className="w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
             {...register('cta_primary_text')}
           />
           {errors.cta_primary_text && (
@@ -193,7 +193,7 @@ export function HeroForm({ defaultValues }: HeroFormProps) {
             id="cta_primary_url"
             type="url"
             placeholder="https://calendly.com/you"
-            className="w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+            className="w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
             {...register('cta_primary_url')}
           />
           {errors.cta_primary_url && (
@@ -216,7 +216,7 @@ export function HeroForm({ defaultValues }: HeroFormProps) {
           id="cta_secondary_text"
           type="text"
           placeholder="View Resume"
-          className="w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+          className="w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
           {...register('cta_secondary_text')}
         />
         {errors.cta_secondary_text && (
@@ -266,7 +266,7 @@ export function HeroForm({ defaultValues }: HeroFormProps) {
         </p>
 
         {fields.length === 0 && (
-          <p className="rounded-[var(--border-radius)] border border-dashed border-border px-3 py-4 text-center text-xs text-muted-foreground">
+          <p className="rounded-(--border-radius) border border-dashed border-border px-3 py-4 text-center text-xs text-muted-foreground">
             No typing texts yet. Click &quot;Add&quot; to create one.
           </p>
         )}
@@ -277,7 +277,7 @@ export function HeroForm({ defaultValues }: HeroFormProps) {
               <input
                 type="text"
                 placeholder={`Typing text ${index + 1}`}
-                className="flex-1 rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                className="flex-1 rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                 {...register(`typing_texts.${index}` as const)}
               />
               <Button

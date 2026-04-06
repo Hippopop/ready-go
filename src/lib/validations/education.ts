@@ -15,22 +15,18 @@ export const educationSchema = z.object({
   field_of_study: z.string().optional().or(z.literal('')),
 
   start_year: z
-    .preprocess(
-      (val) => (val === '' ? undefined : Number(val)),
-      z.number({ invalid_type_error: 'Start year must be a number' })
-        .min(1900, 'Invalid year')
-        .max(2100, 'Invalid year')
-        .optional()
-    ),
+    .number()
+    .min(1900, 'Invalid year')
+    .max(2100, 'Invalid year')
+    .optional()
+    .nullable(),
 
   end_year: z
-    .preprocess(
-      (val) => (val === '' ? undefined : Number(val)),
-      z.number({ invalid_type_error: 'End year must be a number' })
-        .min(1900, 'Invalid year')
-        .max(2100, 'Invalid year')
-        .optional()
-    ),
+    .number()
+    .min(1900, 'Invalid year')
+    .max(2100, 'Invalid year')
+    .optional()
+    .nullable(),
 
   gpa: z.string().optional().or(z.literal('')),
 

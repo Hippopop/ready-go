@@ -45,7 +45,7 @@ export function ProjectList({ projects }: ProjectListProps) {
           <h2 className="text-lg font-semibold text-foreground">Manage Projects</h2>
           <button
             onClick={() => setIsAdding(true)}
-            className="inline-flex h-9 items-center justify-center gap-2 rounded-[var(--border-radius)] bg-primary px-4 text-sm font-medium text-primary-foreground shadow-sm hover:bg-primary/90 transition-colors"
+            className="inline-flex h-9 items-center justify-center gap-2 rounded-(--border-radius) bg-primary px-4 text-sm font-medium text-primary-foreground shadow-sm hover:bg-primary/90 transition-colors"
           >
             <Plus className="h-4 w-4" />
             Add Project
@@ -55,7 +55,7 @@ export function ProjectList({ projects }: ProjectListProps) {
 
       {/* Adding form */}
       {isAdding && (
-        <div className="rounded-[var(--border-radius)] border border-primary/20 bg-primary/[0.02] p-6 shadow-sm">
+        <div className="rounded-(--border-radius) border border-primary/20 bg-primary/[0.02] p-6 shadow-sm">
           <div className="mb-6 flex items-center justify-between border-b pb-4">
             <h3 className="font-semibold text-foreground">Add New Project</h3>
           </div>
@@ -78,7 +78,7 @@ export function ProjectList({ projects }: ProjectListProps) {
             return (
               <div
                 key={project.id}
-                className="col-span-full rounded-[var(--border-radius)] border border-primary/20 bg-primary/[0.02] p-6 shadow-sm"
+                className="col-span-full rounded-(--border-radius) border border-primary/20 bg-primary/[0.02] p-6 shadow-sm"
               >
                 <div className="mb-6 flex items-center justify-between border-b pb-4">
                   <h3 className="font-semibold text-foreground">Edit Project</h3>
@@ -98,7 +98,7 @@ export function ProjectList({ projects }: ProjectListProps) {
           return (
             <div
               key={project.id}
-              className="group relative flex flex-col overflow-hidden rounded-[var(--border-radius)] border bg-card text-card-foreground shadow-sm transition-all hover:border-primary/30 hover:shadow-md"
+              className="group relative flex flex-col overflow-hidden rounded-(--border-radius) border bg-card text-card-foreground shadow-sm transition-all hover:border-primary/30 hover:shadow-md"
             >
               {/* Cover Image Placeholder or Preview */}
               <div className="aspect-video w-full bg-muted overflow-hidden">
@@ -152,7 +152,7 @@ export function ProjectList({ projects }: ProjectListProps) {
                     {project.tech_stack.slice(0, 4).map((tech, idx) => (
                       <span
                         key={`${tech}-${idx}`}
-                        className="inline-flex rounded-[var(--border-radius)] bg-secondary px-2 py-0.5 text-[10px] font-medium text-secondary-foreground"
+                        className="inline-flex rounded-(--border-radius) bg-secondary px-2 py-0.5 text-[10px] font-medium text-secondary-foreground"
                       >
                         {tech}
                       </span>
@@ -169,13 +169,13 @@ export function ProjectList({ projects }: ProjectListProps) {
                 <div className="mt-auto flex items-center justify-end gap-2 pt-5 opacity-0 transition-opacity group-hover:opacity-100">
                   <button
                     onClick={() => setEditingId(project.id)}
-                    className="inline-flex h-8 w-8 items-center justify-center rounded-[var(--border-radius)] border border-input bg-background text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+                    className="inline-flex h-8 w-8 items-center justify-center rounded-(--border-radius) border border-input bg-background text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
                   >
                     <Pencil className="h-4 w-4" />
                   </button>
                   <button
                     onClick={() => setIsDeletingId(project.id)}
-                    className="inline-flex h-8 w-8 items-center justify-center rounded-[var(--border-radius)] border border-input bg-background text-muted-foreground hover:bg-destructive hover:text-destructive-foreground transition-colors"
+                    className="inline-flex h-8 w-8 items-center justify-center rounded-(--border-radius) border border-input bg-background text-muted-foreground hover:bg-destructive hover:text-destructive-foreground transition-colors"
                   >
                     <Trash2 className="h-4 w-4" />
                   </button>
@@ -191,13 +191,13 @@ export function ProjectList({ projects }: ProjectListProps) {
                   <div className="flex gap-2">
                     <button
                       onClick={() => setIsDeletingId(null)}
-                      className="inline-flex h-8 items-center justify-center rounded-[var(--border-radius)] px-3 text-xs font-medium hover:bg-accent"
+                      className="inline-flex h-8 items-center justify-center rounded-(--border-radius) px-3 text-xs font-medium hover:bg-accent"
                     >
                       Cancel
                     </button>
                     <button
                       onClick={() => handleDelete(project.id)}
-                      className="inline-flex h-8 items-center justify-center rounded-[var(--border-radius)] bg-destructive px-3 text-xs font-medium text-destructive-foreground shadow-sm hover:bg-destructive/90"
+                      className="inline-flex h-8 items-center justify-center rounded-(--border-radius) bg-destructive px-3 text-xs font-medium text-destructive-foreground shadow-sm hover:bg-destructive/90"
                     >
                       Delete
                     </button>
@@ -209,7 +209,7 @@ export function ProjectList({ projects }: ProjectListProps) {
         })}
 
         {projects.length === 0 && !isAdding && (
-          <div className="col-span-full py-12 text-center text-muted-foreground border-2 border-dashed rounded-[var(--border-radius)]">
+          <div className="col-span-full py-12 text-center text-muted-foreground border-2 border-dashed rounded-(--border-radius)">
              No projects added yet. Click &quot;Add Project&quot; to get started.
           </div>
         )}

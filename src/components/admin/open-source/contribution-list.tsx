@@ -60,7 +60,7 @@ export function ContributionList({ contributions }: ContributionListProps) {
       </div>
 
       {showAddForm && (
-        <div className="rounded-[var(--border-radius)] border border-border bg-card p-6 shadow-sm">
+        <div className="rounded-(--border-radius) border border-border bg-card p-6 shadow-sm">
           <h3 className="mb-4 text-lg font-semibold text-foreground">Add New Contribution</h3>
           <ContributionForm
             onSuccess={() => {
@@ -76,7 +76,7 @@ export function ContributionList({ contributions }: ContributionListProps) {
         {contributions.map((contribution) => (
           <div
             key={contribution.id}
-            className="group relative flex flex-col rounded-[var(--border-radius)] border border-border bg-card p-5 transition-all hover:shadow-md dark:hover:bg-muted/10"
+            className="group relative flex flex-col rounded-(--border-radius) border border-border bg-card p-5 transition-all hover:shadow-md dark:hover:bg-muted/10"
           >
             {editingId === contribution.id ? (
               <div className="col-span-full">
@@ -132,7 +132,7 @@ export function ContributionList({ contributions }: ContributionListProps) {
                             handleDelete(contribution.id);
                           }}
                           disabled={isPending}
-                          className="rounded-[var(--border-radius-sm)] bg-destructive px-1.5 py-0.5 text-[10px] font-medium text-destructive-foreground hover:bg-destructive/90 transition-colors"
+                          className="rounded-(--border-radius-sm) bg-destructive px-1.5 py-0.5 text-[10px] font-medium text-destructive-foreground hover:bg-destructive/90 transition-colors"
                         >
                           {isPending ? '...' : 'Yes'}
                         </button>
@@ -142,7 +142,7 @@ export function ContributionList({ contributions }: ContributionListProps) {
                             e.stopPropagation();
                             setDeletingId(null);
                           }}
-                          className="rounded-[var(--border-radius-sm)] bg-muted px-1.5 py-0.5 text-[10px] font-medium text-foreground hover:bg-muted/80 transition-colors"
+                          className="rounded-(--border-radius-sm) bg-muted px-1.5 py-0.5 text-[10px] font-medium text-foreground hover:bg-muted/80 transition-colors"
                         >
                           No
                         </button>
@@ -194,7 +194,7 @@ export function ContributionList({ contributions }: ContributionListProps) {
       </div>
 
       {contributions.length === 0 && !showAddForm && (
-        <div className="flex flex-col items-center justify-center rounded-[var(--border-radius)] border border-dashed border-border py-12 text-center">
+        <div className="flex flex-col items-center justify-center rounded-(--border-radius) border border-dashed border-border py-12 text-center">
           <div className="mb-4 rounded-full bg-muted p-3">
              <span className="text-3xl">🏗️</span>
           </div>

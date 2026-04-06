@@ -74,7 +74,7 @@ export function ContributionForm({ contribution, onSuccess, onCancel }: Contribu
       {feedback && (
         <div
           role="alert"
-          className={`rounded-[var(--border-radius)] px-4 py-3 text-sm font-medium ${
+          className={`rounded-(--border-radius) px-4 py-3 text-sm font-medium ${
             feedback.type === 'success'
               ? 'bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20'
               : 'bg-destructive/10 text-destructive border border-destructive/20'
@@ -94,7 +94,7 @@ export function ContributionForm({ contribution, onSuccess, onCancel }: Contribu
             type="text"
             placeholder="e.g. next.js"
             {...register('repo_name')}
-            className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
           {errors.repo_name && <p className="text-xs text-destructive">{errors.repo_name.message}</p>}
         </div>
@@ -108,7 +108,7 @@ export function ContributionForm({ contribution, onSuccess, onCancel }: Contribu
             type="url"
             placeholder="https://github.com/vercel/next.js"
             {...register('repo_url')}
-            className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
           {errors.repo_url && <p className="text-xs text-destructive">{errors.repo_url.message}</p>}
         </div>
@@ -124,7 +124,7 @@ export function ContributionForm({ contribution, onSuccess, onCancel }: Contribu
             type="text"
             placeholder="e.g. TypeScript"
             {...register('language')}
-            className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
           {errors.language && <p className="text-xs text-destructive">{errors.language.message}</p>}
         </div>
@@ -136,8 +136,8 @@ export function ContributionForm({ contribution, onSuccess, onCancel }: Contribu
           <input
             id="stars"
             type="number"
-            {...register('stars')}
-            className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            {...register('stars', { valueAsNumber: true })}
+            className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
           {errors.stars && <p className="text-xs text-destructive">{errors.stars.message}</p>}
         </div>
@@ -149,7 +149,7 @@ export function ContributionForm({ contribution, onSuccess, onCancel }: Contribu
           <select
             id="role"
             {...register('role')}
-            className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           >
             {ROLES.map((role) => (
               <option key={role.value} value={role.value}>
@@ -170,7 +170,7 @@ export function ContributionForm({ contribution, onSuccess, onCancel }: Contribu
           rows={3}
           placeholder="Briefly describe your contribution..."
           {...register('description')}
-          className="flex min-h-[80px] w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 resize-none"
+          className="flex min-h-[80px] w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 resize-none"
         />
         {errors.description && <p className="text-xs text-destructive">{errors.description.message}</p>}
       </div>

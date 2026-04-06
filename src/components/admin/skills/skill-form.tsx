@@ -133,7 +133,7 @@ export function SkillForm({ id, defaultValues, onSuccess }: SkillFormProps) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-4 rounded-[var(--border-radius)] border border-border bg-muted/30 p-4"
+      className="space-y-4 rounded-(--border-radius) border border-border bg-muted/30 p-4"
     >
       <p className="text-sm font-semibold text-foreground">
         {isEditing ? 'Edit Skill' : 'Add a Skill'}
@@ -152,7 +152,7 @@ export function SkillForm({ id, defaultValues, onSuccess }: SkillFormProps) {
             id="skill-name"
             type="text"
             placeholder="e.g. TypeScript"
-            className="w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/30"
+            className="w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/30"
             {...register('name')}
           />
           {errors.name && (
@@ -174,7 +174,7 @@ export function SkillForm({ id, defaultValues, onSuccess }: SkillFormProps) {
             list="skill-category-options"
             placeholder="e.g. Frontend"
             autoComplete="off"
-            className="w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/30"
+            className="w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/30"
             {...register('category')}
           />
           <datalist id="skill-category-options">
@@ -199,7 +199,7 @@ export function SkillForm({ id, defaultValues, onSuccess }: SkillFormProps) {
             id="skill-icon-url"
             type="url"
             placeholder="https://cdn.example.com/icon.svg"
-            className="w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/30"
+            className="w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/30"
             {...register('icon_url')}
           />
           {errors.icon_url && (
@@ -221,10 +221,8 @@ export function SkillForm({ id, defaultValues, onSuccess }: SkillFormProps) {
             min={0}
             step={0.5}
             placeholder="e.g. 3"
-            className="w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/30"
-            {...register('years_of_experience', {
-              setValueAs: (v: string) => (v === '' ? undefined : Number(v)),
-            })}
+            className="w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/30"
+            {...register('years_of_experience', { valueAsNumber: true })}
           />
           {errors.years_of_experience && (
             <p className="text-xs text-destructive">
@@ -259,7 +257,7 @@ export function SkillForm({ id, defaultValues, onSuccess }: SkillFormProps) {
       {feedback && (
         <div
           role="alert"
-          className={`rounded-[var(--border-radius)] px-4 py-3 text-sm ${
+          className={`rounded-(--border-radius) px-4 py-3 text-sm ${
             feedback.type === 'success'
               ? 'border border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400'
               : 'border border-destructive/30 bg-destructive/10 text-destructive'

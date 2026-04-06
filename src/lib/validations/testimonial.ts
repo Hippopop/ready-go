@@ -4,14 +4,14 @@ import { z } from 'zod';
 export const testimonialSchema = z.object({
   author_name: z.string().min(1, 'Author name is required'),
 
-  author_title: z.string().optional().or(z.literal('')),
+  author_title: z.string().nullish().or(z.literal('')),
 
-  author_company: z.string().optional().or(z.literal('')),
+  author_company: z.string().nullish().or(z.literal('')),
 
   author_avatar_url: z
     .string()
     .url('Please enter a valid URL')
-    .optional()
+    .nullish()
     .or(z.literal('')),
 
   content: z
@@ -22,7 +22,7 @@ export const testimonialSchema = z.object({
   linkedin_url: z
     .string()
     .url('Please enter a valid URL')
-    .optional()
+    .nullish()
     .or(z.literal('')),
 });
 

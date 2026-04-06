@@ -32,7 +32,7 @@ export function SectionItem({ section }: SectionItemProps) {
   return (
     <div
       className={cn(
-        "bg-surface rounded-[var(--border-radius)] border border-app-text/10 px-4 py-3 flex items-center gap-3 transition-opacity duration-[var(--transition-speed)] ease-[var(--transition-easing)]",
+        "bg-surface rounded-(--border-radius) border border-app-text/10 px-4 py-3 flex items-center gap-3 transition-opacity duration-(--transition-speed) ease-(--transition-easing)",
         !section.is_visible && "opacity-50"
       )}
     >

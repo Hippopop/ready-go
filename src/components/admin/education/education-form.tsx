@@ -74,7 +74,7 @@ export function EducationForm({ education, onSuccess, onCancel }: EducationFormP
       {feedback && (
         <div
           role="alert"
-          className={`rounded-[var(--border-radius)] px-4 py-3 text-sm font-medium ${
+          className={`rounded-(--border-radius) px-4 py-3 text-sm font-medium ${
             feedback.type === 'success'
               ? 'bg-green-500/10 text-green-600 dark:text-green-400'
               : 'bg-destructive/10 text-destructive'
@@ -95,7 +95,7 @@ export function EducationForm({ education, onSuccess, onCancel }: EducationFormP
           autoComplete="off"
           placeholder="e.g. Stanford University"
           {...register('institution')}
-          className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         />
         {errors.institution && (
           <p className="text-xs text-destructive">{errors.institution.message}</p>
@@ -114,7 +114,7 @@ export function EducationForm({ education, onSuccess, onCancel }: EducationFormP
             autoComplete="off"
             placeholder="e.g. Bachelor of Science"
             {...register('degree')}
-            className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
           {errors.degree && (
             <p className="text-xs text-destructive">{errors.degree.message}</p>
@@ -131,7 +131,7 @@ export function EducationForm({ education, onSuccess, onCancel }: EducationFormP
             autoComplete="off"
             placeholder="e.g. Computer Science"
             {...register('field_of_study')}
-            className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
           {errors.field_of_study && (
             <p className="text-xs text-destructive">{errors.field_of_study.message}</p>
@@ -149,8 +149,8 @@ export function EducationForm({ education, onSuccess, onCancel }: EducationFormP
             id="edu-start-year"
             type="number"
             placeholder="YYYY"
-            {...register('start_year')}
-            className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            {...register('start_year', { valueAsNumber: true })}
+            className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
           {errors.start_year && (
             <p className="text-xs text-destructive">{errors.start_year.message}</p>
@@ -165,8 +165,8 @@ export function EducationForm({ education, onSuccess, onCancel }: EducationFormP
             id="edu-end-year"
             type="number"
             placeholder="YYYY"
-            {...register('end_year')}
-            className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            {...register('end_year', { valueAsNumber: true })}
+            className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
           {errors.end_year && (
             <p className="text-xs text-destructive">{errors.end_year.message}</p>
@@ -186,7 +186,7 @@ export function EducationForm({ education, onSuccess, onCancel }: EducationFormP
             autoComplete="off"
             placeholder="e.g. 3.9/4.0"
             {...register('gpa')}
-            className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
           {errors.gpa && (
             <p className="text-xs text-destructive">{errors.gpa.message}</p>
@@ -203,7 +203,7 @@ export function EducationForm({ education, onSuccess, onCancel }: EducationFormP
             autoComplete="off"
             placeholder="e.g. Dean's List"
             {...register('honors')}
-            className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
           {errors.honors && (
             <p className="text-xs text-destructive">{errors.honors.message}</p>
@@ -222,7 +222,7 @@ export function EducationForm({ education, onSuccess, onCancel }: EducationFormP
           autoComplete="off"
           placeholder="https://univ.edu/logo.png"
           {...register('institution_logo_url')}
-          className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         />
         {errors.institution_logo_url && (
           <p className="text-xs text-destructive">{errors.institution_logo_url.message}</p>
@@ -239,7 +239,7 @@ export function EducationForm({ education, onSuccess, onCancel }: EducationFormP
           rows={3}
           placeholder="Relevant coursework, clubs, or research…"
           {...register('description')}
-          className="flex w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 resize-y min-h-[80px]"
+          className="flex w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 resize-y min-h-[80px]"
         />
         {errors.description && (
           <p className="text-xs text-destructive">{errors.description.message}</p>
@@ -251,14 +251,14 @@ export function EducationForm({ education, onSuccess, onCancel }: EducationFormP
         <button
           type="button"
           onClick={onCancel}
-          className="inline-flex h-9 items-center justify-center rounded-[var(--border-radius)] border border-input bg-background px-4 text-sm font-medium text-foreground shadow-sm hover:bg-accent hover:text-accent-foreground transition-colors"
+          className="inline-flex h-9 items-center justify-center rounded-(--border-radius) border border-input bg-background px-4 text-sm font-medium text-foreground shadow-sm hover:bg-accent hover:text-accent-foreground transition-colors"
         >
           Cancel
         </button>
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex h-9 items-center justify-center rounded-[var(--border-radius)] bg-primary px-5 text-sm font-medium text-primary-foreground shadow-sm hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="inline-flex h-9 items-center justify-center rounded-(--border-radius) bg-primary px-5 text-sm font-medium text-primary-foreground shadow-sm hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           {isSubmitting ? 'Saving…' : isEditing ? 'Save Changes' : 'Add Education'}
         </button>

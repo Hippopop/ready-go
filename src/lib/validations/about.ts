@@ -17,14 +17,14 @@ export const aboutSchema = z.object({
   location: z
     .string()
     .max(200, 'Location must be under 200 characters')
-    .optional()
+    .nullish()
     .or(z.literal('')),
   availability_status: z.enum(AVAILABILITY_STATUSES),
   years_of_experience: z
     .number()
     .min(0, 'Must be at least 0')
     .max(60, 'Must be 60 or less')
-    .optional(),
+    .nullish(),
 });
 
 export type AboutFormValues = z.infer<typeof aboutSchema>;

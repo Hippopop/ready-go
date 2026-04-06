@@ -54,7 +54,7 @@ export function ThemeEditor({ initialTheme: _initialTheme }: ThemeEditorProps) {
 
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="flex justify-between items-center bg-card p-4 rounded-[var(--border-radius)] border border-border shadow-sm sticky top-0 z-10">
+      <div className="flex justify-between items-center bg-card p-4 rounded-(--border-radius) border border-border shadow-sm sticky top-0 z-10">
         <div className="flex items-center gap-3">
           <h2 className="text-lg font-bold tracking-tight">Theme Customization</h2>
           {isDirty && (
@@ -66,7 +66,7 @@ export function ThemeEditor({ initialTheme: _initialTheme }: ThemeEditorProps) {
         <Button 
           onClick={handleSave} 
           disabled={!isDirty || isSaving}
-          className="rounded-[var(--border-radius)] px-6 shadow-glow"
+          className="rounded-(--border-radius) px-6 shadow-glow"
         >
           {isSaving ? (
             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -78,7 +78,7 @@ export function ThemeEditor({ initialTheme: _initialTheme }: ThemeEditorProps) {
       </div>
 
       {message && (
-        <div className={`p-4 rounded-[var(--border-radius)] border ${
+        <div className={`p-4 rounded-(--border-radius) border ${
           message.type === "success" 
             ? "bg-green-500/10 border-green-500/20 text-green-600 dark:text-green-400" 
             : "bg-red-500/10 border-red-500/20 text-red-600 dark:text-red-400"
@@ -204,13 +204,13 @@ export function ThemeEditor({ initialTheme: _initialTheme }: ThemeEditorProps) {
         {/* Live Preview Panel */}
         <div className="xl:col-span-4">
           <div className="sticky top-24">
-            <Card className="overflow-hidden border-2 border-primary/20 bg-surface shadow-xl rounded-[var(--border-radius)]">
+            <Card className="overflow-hidden border-2 border-primary/20 bg-surface shadow-xl rounded-(--border-radius)">
               <CardHeader className="bg-muted/30">
                 <CardTitle className="text-base font-semibold">Theme Preview</CardTitle>
                 <CardDescription>How your portfolio elements look.</CardDescription>
               </CardHeader>
-              <CardContent className="p-[var(--spacing-unit)] space-y-6">
-                <div className="bg-background p-[var(--spacing-unit)] rounded-[var(--border-radius)] border">
+              <CardContent className="p-(--spacing-unit) space-y-6">
+                <div className="bg-background p-(--spacing-unit) rounded-(--border-radius) border">
                   {/* Typography preview */}
                   <h3 className="font-heading text-app-text text-lg font-semibold mb-2">
                     Heading Font
@@ -220,15 +220,15 @@ export function ThemeEditor({ initialTheme: _initialTheme }: ThemeEditorProps) {
                   </p>
 
                   {/* Button preview — shows primary color + border radius + animation */}
-                  <button className="bg-primary text-white px-4 py-2 rounded-[var(--border-radius)] 
-                    transition-all duration-[var(--transition-speed)] ease-[var(--transition-easing)]
+                  <button className="bg-primary text-white px-4 py-2 rounded-(--border-radius) 
+                    transition-all duration-(--transition-speed) ease-(--transition-easing)
                     hover:opacity-80 active:scale-95 mb-4 w-full font-body group relative overflow-hidden">
                     <span className="relative z-10">Primary Button</span>
-                    <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-[var(--transition-speed)]" />
+                    <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-(--transition-speed)" />
                   </button>
 
                   {/* Surface card — shows surface color + border radius */}
-                  <div className="bg-surface rounded-[var(--border-radius)] p-3 border border-app-text/10">
+                  <div className="bg-surface rounded-(--border-radius) p-3 border border-app-text/10">
                     <p className="text-xs font-body text-app-text/50 uppercase tracking-wide mb-1">
                       Surface Element
                     </p>
@@ -239,9 +239,9 @@ export function ThemeEditor({ initialTheme: _initialTheme }: ThemeEditorProps) {
 
                   {/* Accent color swatch */}
                   <div className="mt-3 flex gap-2">
-                    <div className="w-8 h-8 rounded-[var(--border-radius)] bg-primary" />
-                    <div className="w-8 h-8 rounded-[var(--border-radius)] bg-accent" />
-                    <div className="w-8 h-8 rounded-[var(--border-radius)] bg-surface border" />
+                    <div className="w-8 h-8 rounded-(--border-radius) bg-primary" />
+                    <div className="w-8 h-8 rounded-(--border-radius) bg-accent" />
+                    <div className="w-8 h-8 rounded-(--border-radius) bg-surface border" />
                   </div>
                 </div>
 
@@ -268,7 +268,7 @@ function Section({ icon, title, description, children }: {
   return (
     <Card className="border-border/50 shadow-sm overflow-hidden">
       <CardHeader className="flex flex-row items-center gap-4 space-y-0 bg-muted/20">
-        <div className="p-2 rounded-[var(--border-radius-sm)] bg-background border border-border shadow-sm">
+        <div className="p-2 rounded-(--border-radius-sm) bg-background border border-border shadow-sm">
           {icon}
         </div>
         <div>
@@ -285,7 +285,7 @@ function Section({ icon, title, description, children }: {
 
 function RadioItem({ value, label }: { value: string; label: string }) {
   return (
-    <div className="flex items-center space-x-2 bg-muted/30 px-3 py-2 rounded-[var(--border-radius)] border border-border/50 hover:border-primary/30 transition-colors pointer-cursor">
+    <div className="flex items-center space-x-2 bg-muted/30 px-3 py-2 rounded-(--border-radius) border border-border/50 hover:border-primary/30 transition-colors pointer-cursor">
       <RadioGroupItem value={value} id={value} />
       <Label htmlFor={value} className="cursor-pointer font-medium">{label}</Label>
     </div>

@@ -133,7 +133,7 @@ export function SkillList({ skills }: SkillListProps) {
       {feedback && (
         <div
           role="alert"
-          className={`rounded-[var(--border-radius)] px-4 py-3 text-sm ${
+          className={`rounded-(--border-radius) px-4 py-3 text-sm ${
             feedback.type === 'success'
               ? 'border border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400'
               : 'border border-destructive/30 bg-destructive/10 text-destructive'
@@ -156,7 +156,7 @@ export function SkillList({ skills }: SkillListProps) {
 
       {/* Skills grouped by category */}
       {skills.length === 0 && !showAddForm ? (
-        <div className="rounded-[var(--border-radius)] border border-dashed border-border px-4 py-10 text-center text-sm text-muted-foreground">
+        <div className="rounded-(--border-radius) border border-dashed border-border px-4 py-10 text-center text-sm text-muted-foreground">
           Click &ldquo;+ Add Skill&rdquo; to add your first skill.
         </div>
       ) : (
@@ -168,7 +168,7 @@ export function SkillList({ skills }: SkillListProps) {
                 {category}
               </h2>
 
-              <ul className="divide-y divide-border rounded-[var(--border-radius)] border border-border">
+              <ul className="divide-y divide-border rounded-(--border-radius) border border-border">
                 {categorySkills.map((skill) => (
                   <li key={skill.id}>
                     {/* Skill row */}

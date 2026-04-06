@@ -81,7 +81,7 @@ export function AboutForm({ initialData }: AboutFormProps) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-6 rounded-[var(--border-radius)] border border-border bg-card p-6"
+      className="space-y-6 rounded-(--border-radius) border border-border bg-card p-6"
     >
       <div>
         <h2 className="text-lg font-semibold text-card-foreground">
@@ -105,7 +105,7 @@ export function AboutForm({ initialData }: AboutFormProps) {
           id="about-bio"
           rows={5}
           placeholder="Write a brief bio about yourself…"
-          className="w-full resize-y rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/30"
+          className="w-full resize-y rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/30"
           {...register('bio')}
         />
         <div className="flex items-center justify-between">
@@ -130,7 +130,7 @@ export function AboutForm({ initialData }: AboutFormProps) {
           id="about-location"
           type="text"
           placeholder="e.g. San Francisco, CA"
-          className="w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/30"
+          className="w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/30"
           {...register('location')}
         />
         {errors.location && (
@@ -148,7 +148,7 @@ export function AboutForm({ initialData }: AboutFormProps) {
         </label>
         <select
           id="about-availability"
-          className="w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm text-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/30"
+          className="w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm text-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/30"
           {...register('availability_status')}
         >
           {AVAILABILITY_STATUSES.map((status) => (
@@ -178,10 +178,8 @@ export function AboutForm({ initialData }: AboutFormProps) {
           min={0}
           max={60}
           placeholder="e.g. 5"
-          className="w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/30"
-          {...register('years_of_experience', {
-            setValueAs: (v) => (v === '' ? undefined : parseInt(v, 10)),
-          })}
+          className="w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:border-ring focus:outline-none focus:ring-2 focus:ring-ring/30"
+          {...register('years_of_experience', { valueAsNumber: true })}
         />
         {errors.years_of_experience && (
           <p className="text-xs text-destructive">
@@ -194,7 +192,7 @@ export function AboutForm({ initialData }: AboutFormProps) {
       {feedback && (
         <div
           role="alert"
-          className={`rounded-[var(--border-radius)] px-4 py-3 text-sm ${
+          className={`rounded-(--border-radius) px-4 py-3 text-sm ${
             feedback.type === 'success'
               ? 'border border-emerald-500/30 bg-emerald-500/10 text-emerald-700 dark:text-emerald-400'
               : 'border border-destructive/30 bg-destructive/10 text-destructive'

@@ -64,7 +64,7 @@ export function TestimonialList({ initialTestimonials }: TestimonialListProps) {
         {!isAdding && !editingId && (
           <button
             onClick={() => setIsAdding(true)}
-            className="inline-flex items-center gap-2 rounded-[var(--border-radius)] bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-sm hover:bg-primary/90 transition-colors"
+            className="inline-flex items-center gap-2 rounded-(--border-radius) bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-sm hover:bg-primary/90 transition-colors"
           >
             <Plus className="h-4 w-4" />
             Add Testimonial
@@ -74,7 +74,7 @@ export function TestimonialList({ initialTestimonials }: TestimonialListProps) {
 
       {/* Form — Add Mode */}
       {isAdding && (
-        <div className="rounded-[var(--border-radius)] border border-border bg-card p-6 shadow-sm">
+        <div className="rounded-(--border-radius) border border-border bg-card p-6 shadow-sm">
           <h3 className="mb-4 text-lg font-medium text-foreground">Add New Testimonial</h3>
           <TestimonialForm
             onSuccess={handleSuccess}
@@ -85,7 +85,7 @@ export function TestimonialList({ initialTestimonials }: TestimonialListProps) {
 
       {/* Form — Edit Mode */}
       {editingId && editingTestimonial && (
-        <div className="rounded-[var(--border-radius)] border border-border bg-card p-6 shadow-sm">
+        <div className="rounded-(--border-radius) border border-border bg-card p-6 shadow-sm">
           <h3 className="mb-4 text-lg font-medium text-foreground">Edit Testimonial</h3>
           <TestimonialForm
             testimonial={editingTestimonial}
@@ -97,7 +97,7 @@ export function TestimonialList({ initialTestimonials }: TestimonialListProps) {
 
       {/* Empty State */}
       {!isAdding && !editingId && testimonials.length === 0 && (
-        <div className="flex flex-col items-center justify-center rounded-[var(--border-radius)] border-2 border-dashed border-border py-12 text-center">
+        <div className="flex flex-col items-center justify-center rounded-(--border-radius) border-2 border-dashed border-border py-12 text-center">
           <Quote className="mb-4 h-10 w-10 text-muted-foreground/40" />
           <p className="text-muted-foreground">No testimonials added yet.</p>
           <p className="text-sm text-muted-foreground/60">
@@ -112,7 +112,7 @@ export function TestimonialList({ initialTestimonials }: TestimonialListProps) {
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.id}
-              className="group relative flex flex-col justify-between overflow-hidden rounded-[var(--border-radius)] border border-border bg-card p-5 shadow-sm transition-all hover:shadow-md"
+              className="group relative flex flex-col justify-between overflow-hidden rounded-(--border-radius) border border-border bg-card p-5 shadow-sm transition-all hover:shadow-md"
             >
               <div>
                 <div className="flex items-start justify-between mb-4">
@@ -172,13 +172,13 @@ export function TestimonialList({ initialTestimonials }: TestimonialListProps) {
                     <button
                       onClick={() => handleDelete(testimonial.id)}
                       disabled={isPending}
-                      className="inline-flex h-8 items-center justify-center rounded-[var(--border-radius)] bg-destructive px-3 text-xs font-medium text-destructive-foreground hover:bg-destructive/90 transition-colors"
+                      className="inline-flex h-8 items-center justify-center rounded-(--border-radius) bg-destructive px-3 text-xs font-medium text-destructive-foreground hover:bg-destructive/90 transition-colors"
                     >
                       {isPending ? '...' : 'Yes'}
                     </button>
                     <button
                       onClick={() => setDeletingId(null)}
-                      className="inline-flex h-8 items-center justify-center rounded-[var(--border-radius)] border border-input bg-background px-3 text-xs font-medium hover:bg-accent transition-colors"
+                      className="inline-flex h-8 items-center justify-center rounded-(--border-radius) border border-input bg-background px-3 text-xs font-medium hover:bg-accent transition-colors"
                     >
                       No
                     </button>
@@ -187,14 +187,14 @@ export function TestimonialList({ initialTestimonials }: TestimonialListProps) {
                   <div className="flex items-center gap-2 opacity-0 transition-opacity group-hover:opacity-100">
                     <button
                       onClick={() => setEditingId(testimonial.id)}
-                      className="inline-flex h-8 w-8 items-center justify-center rounded-[var(--border-radius)] border border-input bg-background text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-(--border-radius) border border-input bg-background text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
                       title="Edit"
                     >
                       <Pencil className="h-3.5 w-3.5" />
                     </button>
                     <button
                       onClick={() => setDeletingId(testimonial.id)}
-                      className="inline-flex h-8 w-8 items-center justify-center rounded-[var(--border-radius)] border border-input bg-background text-destructive hover:bg-destructive/10 transition-colors"
+                      className="inline-flex h-8 w-8 items-center justify-center rounded-(--border-radius) border border-input bg-background text-destructive hover:bg-destructive/10 transition-colors"
                       title="Delete"
                     >
                       <Trash2 className="h-3.5 w-3.5" />

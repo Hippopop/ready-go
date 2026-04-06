@@ -15,7 +15,7 @@ export function PresetSelector() {
           key={preset.name}
           onClick={() => applyPreset(preset.name)}
           className={cn(
-            "group relative flex flex-col gap-2 p-3 rounded-[var(--border-radius)] border-2 text-left transition-all hover:bg-muted/50",
+            "group relative flex flex-col gap-2 p-3 rounded-(--border-radius) border-2 text-left transition-all hover:bg-muted/50",
             theme.preset_name === preset.name 
               ? "border-primary bg-primary/5" 
               : "border-border"

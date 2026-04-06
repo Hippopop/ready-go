@@ -16,22 +16,14 @@ export const experienceSchema = z
   .object({
     company_name: z.string().min(1, 'Company name is required'),
 
-    company_url: z
-      .string()
-      .url('Please enter a valid URL')
-      .optional()
-      .or(z.literal('')),
+    company_url: z.string().url('Please enter a valid URL').nullish().or(z.literal('')),
 
-    company_logo_url: z
-      .string()
-      .url('Please enter a valid URL')
-      .optional()
-      .or(z.literal('')),
+    company_logo_url: z.string().url('Please enter a valid URL').nullish().or(z.literal('')),
 
     role: z.string().min(1, 'Role / title is required'),
 
     employment_type: z.enum(EMPLOYMENT_TYPES, {
-      required_error: 'Please select an employment type',
+      message: 'Please select an employment type',
     }),
 
     start_date: z
@@ -42,24 +34,22 @@ export const experienceSchema = z
     end_date: z
       .string()
       .regex(/^\d{4}-\d{2}-\d{2}$/, 'End date must be in YYYY-MM-DD format')
-      .optional()
+      .nullish()
       .or(z.literal('')),
 
-    is_current: z.boolean().default(false),
+    is_current: z.boolean(),
 
     description: z
       .string()
       .max(2000, 'Description must be under 2000 characters')
-      .optional()
+      .nullish()
       .or(z.literal('')),
 
-    tech_stack: z.array(z.string()).optional(),
+    tech_stack: z.array(z.string()),
   })
   .refine(
     (data) => {
-      // If not current role, end_date is recommended but not strictly required
-      // However if both dates are present, end must be after start
-      if (data.end_date && data.start_date) {
+      if (data.end_date && data.start_date && data.end_date.length > 0) {
         return data.end_date >= data.start_date;
       }
       return true;

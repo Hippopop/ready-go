@@ -8,15 +8,12 @@ interface MinimalTemplateProps {
 const MinimalTemplate: React.FC<MinimalTemplateProps> = ({ data }) => {
   const {
     profile,
-    hero,
     about,
     socialLinks,
     experiences,
     projects,
     skills,
     education,
-    certifications,
-    awards,
     resumeSettings,
   } = data;
 

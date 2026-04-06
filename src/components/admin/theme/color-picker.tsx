@@ -16,7 +16,7 @@ export function ColorPicker({ label, value, onChange }: ColorPickerProps) {
       <Label className="text-sm font-medium">{label}</Label>
       <div className="flex gap-2 items-center">
         <div 
-          className="w-10 h-10 rounded-[var(--border-radius)] border border-border overflow-hidden shrink-0 relative"
+          className="w-10 h-10 rounded-(--border-radius) border border-border overflow-hidden shrink-0 relative"
           style={{ backgroundColor: value }}
         >
           <input

@@ -1,7 +1,5 @@
 "use server";
 
-'use server';
-
 import { revalidatePath } from 'next/cache';
 import { createClient } from '@/lib/supabase/server';
 import { blogPostSchema, type BlogPostFormValues } from '@/lib/validations/blog-post';

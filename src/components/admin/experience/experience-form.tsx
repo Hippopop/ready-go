@@ -76,13 +76,13 @@ function TagInput({ tags, onChange }: TagInputProps) {
 
   return (
     <div
-      className="flex min-h-10 flex-wrap gap-1.5 rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 cursor-text"
+      className="flex min-h-10 flex-wrap gap-1.5 rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 cursor-text"
       onClick={() => inputRef.current?.focus()}
     >
       {tags.map((tag, i) => (
         <span
           key={`${tag}-${i}`}
-          className="inline-flex items-center gap-1 rounded-[var(--border-radius)] bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary"
+          className="inline-flex items-center gap-1 rounded-(--border-radius) bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary"
         >
           {tag}
           <button
@@ -179,7 +179,7 @@ export function ExperienceForm({ experience, onSuccess, onCancel }: ExperienceFo
       {feedback && (
         <div
           role="alert"
-          className={`rounded-[var(--border-radius)] px-4 py-3 text-sm font-medium ${
+          className={`rounded-(--border-radius) px-4 py-3 text-sm font-medium ${
             feedback.type === 'success'
               ? 'bg-green-500/10 text-green-600 dark:text-green-400'
               : 'bg-destructive/10 text-destructive'
@@ -201,7 +201,7 @@ export function ExperienceForm({ experience, onSuccess, onCancel }: ExperienceFo
             autoComplete="off"
             placeholder="e.g. Senior Frontend Engineer"
             {...register('role')}
-            className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
           {errors.role && (
             <p className="text-xs text-destructive">{errors.role.message}</p>
@@ -218,7 +218,7 @@ export function ExperienceForm({ experience, onSuccess, onCancel }: ExperienceFo
             autoComplete="organization"
             placeholder="e.g. Acme Corp"
             {...register('company_name')}
-            className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
           {errors.company_name && (
             <p className="text-xs text-destructive">{errors.company_name.message}</p>
@@ -235,7 +235,7 @@ export function ExperienceForm({ experience, onSuccess, onCancel }: ExperienceFo
           <select
             id="exp-employment-type"
             {...register('employment_type')}
-            className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           >
             {EMPLOYMENT_TYPES.map((type) => (
               <option key={type} value={type}>
@@ -258,7 +258,7 @@ export function ExperienceForm({ experience, onSuccess, onCancel }: ExperienceFo
             autoComplete="off"
             placeholder="https://company.com"
             {...register('company_url')}
-            className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
           {errors.company_url && (
             <p className="text-xs text-destructive">{errors.company_url.message}</p>
@@ -276,7 +276,7 @@ export function ExperienceForm({ experience, onSuccess, onCancel }: ExperienceFo
             id="exp-start-date"
             type="date"
             {...register('start_date')}
-            className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
           {errors.start_date && (
             <p className="text-xs text-destructive">{errors.start_date.message}</p>
@@ -291,7 +291,7 @@ export function ExperienceForm({ experience, onSuccess, onCancel }: ExperienceFo
             End Date
           </label>
           {isCurrent ? (
-            <div className="flex h-10 items-center rounded-[var(--border-radius)] border border-input bg-muted/40 px-3 text-sm text-muted-foreground select-none">
+            <div className="flex h-10 items-center rounded-(--border-radius) border border-input bg-muted/40 px-3 text-sm text-muted-foreground select-none">
               Present
             </div>
           ) : (
@@ -299,7 +299,7 @@ export function ExperienceForm({ experience, onSuccess, onCancel }: ExperienceFo
               id="exp-end-date"
               type="date"
               {...register('end_date')}
-              className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             />
           )}
           {errors.end_date && (
@@ -330,7 +330,7 @@ export function ExperienceForm({ experience, onSuccess, onCancel }: ExperienceFo
           autoComplete="off"
           placeholder="https://company.com/logo.png"
           {...register('company_logo_url')}
-          className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         />
         {errors.company_logo_url && (
           <p className="text-xs text-destructive">{errors.company_logo_url.message}</p>
@@ -347,7 +347,7 @@ export function ExperienceForm({ experience, onSuccess, onCancel }: ExperienceFo
           rows={4}
           placeholder="Describe your responsibilities, achievements, and impact…"
           {...register('description')}
-          className="flex w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 resize-y min-h-[96px]"
+          className="flex w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 resize-y min-h-[96px]"
         />
         {errors.description && (
           <p className="text-xs text-destructive">{errors.description.message}</p>
@@ -372,14 +372,14 @@ export function ExperienceForm({ experience, onSuccess, onCancel }: ExperienceFo
         <button
           type="button"
           onClick={onCancel}
-          className="inline-flex h-9 items-center justify-center rounded-[var(--border-radius)] border border-input bg-background px-4 text-sm font-medium text-foreground shadow-sm hover:bg-accent hover:text-accent-foreground transition-colors"
+          className="inline-flex h-9 items-center justify-center rounded-(--border-radius) border border-input bg-background px-4 text-sm font-medium text-foreground shadow-sm hover:bg-accent hover:text-accent-foreground transition-colors"
         >
           Cancel
         </button>
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex h-9 items-center justify-center rounded-[var(--border-radius)] bg-primary px-5 text-sm font-medium text-primary-foreground shadow-sm hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="inline-flex h-9 items-center justify-center rounded-(--border-radius) bg-primary px-5 text-sm font-medium text-primary-foreground shadow-sm hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           {isSubmitting ? 'Saving…' : isEditing ? 'Save Changes' : 'Add Experience'}
         </button>
