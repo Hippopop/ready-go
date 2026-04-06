@@ -1,5 +1,5 @@
 "use client";
-
+ 
 import {
   LayoutDashboard,
   Palette,
@@ -15,9 +15,10 @@ import {
   GitBranch,
   LayoutList,
   FileText,
+  Inbox,
 } from "lucide-react";
 import { NavItem } from "./nav-item";
-
+ 
 const coreNavItems = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard },
   { href: "/admin/sections", label: "Sections", icon: LayoutList },
@@ -29,7 +30,7 @@ const coreNavItems = [
   { href: "/admin/skills", label: "Skills", icon: Code },
   { href: "/admin/education", label: "Education", icon: GraduationCap },
 ];
-
+ 
 const secondaryNavItems = [
   { href: "/admin/certifications", label: "Certifications", icon: Award },
   { href: "/admin/testimonials", label: "Testimonials", icon: MessageSquare },
@@ -38,8 +39,12 @@ const secondaryNavItems = [
   { href: "/admin/open-source", label: "Open Source", icon: GitBranch },
   { href: "/admin/resume", label: "Resume", icon: FileText },
 ];
-
-export function SidebarNav() {
+ 
+interface SidebarNavProps {
+  unreadCount?: number;
+}
+ 
+export function SidebarNav({ unreadCount = 0 }: SidebarNavProps) {
   return (
     <nav className="flex flex-col gap-1 py-4 flex-1 overflow-y-auto no-scrollbar pr-2">
       <div className="flex flex-col gap-1">
@@ -52,7 +57,20 @@ export function SidebarNav() {
         {secondaryNavItems.map((item) => (
           <NavItem key={item.href} {...item} />
         ))}
+        {/* Inbox with dynamic count */}
+        <NavItem 
+          href="/admin/inbox" 
+          label="Inbox" 
+          icon={Inbox} 
+          badge={unreadCount > 0 ? (
+            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary text-[10px] font-bold text-white shadow-sm ring-2 ring-surface animate-in zoom-in duration-(--transition-speed)">
+              {unreadCount > 99 ? '99+' : unreadCount}
+            </span>
+          ) : null}
+        />
       </div>
     </nav>
   );
 }
+
+

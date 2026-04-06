@@ -23,11 +23,23 @@ export async function updateSession(request: NextRequest) {
     }
   )
 
-  // Refresh session — do not remove this
-  const { data: { user } } = await supabase.auth.getUser()
+  // Refresh session only for admin routes to avoid timeouts on public pages
+  let user = null
+  const isAdminRoute = request.nextUrl.pathname.startsWith('/admin')
+  
+  if (isAdminRoute) {
+    try {
+      const { data } = await supabase.auth.getUser()
+      user = data.user
+    } catch (error) {
+      console.error('Supabase auth error in middleware:', error)
+      // On connection error, we still allow the request to proceed 
+      // but the following redirect check will trigger if user is null
+    }
+  }
 
   // Protect admin routes
-  if (!user && request.nextUrl.pathname.startsWith('/admin')) {
+  if (isAdminRoute && !user) {
     const url = request.nextUrl.clone()
     url.pathname = '/login'
     return NextResponse.redirect(url)

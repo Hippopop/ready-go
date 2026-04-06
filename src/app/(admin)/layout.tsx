@@ -1,6 +1,7 @@
 import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import { SignOutButton } from '@/components/admin/sign-out-button';
+import { getUnreadCount } from '@/lib/actions/contact';
 import { SidebarNav } from '@/components/admin/sidebar/sidebar-nav';
 
 export default async function AdminLayout({
@@ -18,6 +19,8 @@ export default async function AdminLayout({
     redirect('/login');
   }
 
+  const unreadCount = await getUnreadCount();
+
   return (
     <div className="flex h-screen overflow-hidden bg-background text-app-text font-body">
       {/* Sidebar */}
@@ -29,7 +32,7 @@ export default async function AdminLayout({
             </span>
           </div>
           
-          <SidebarNav />
+          <SidebarNav unreadCount={unreadCount} />
           
           <div className="mt-auto pt-4 border-t border-border">
             <SignOutButton />
@@ -37,8 +40,9 @@ export default async function AdminLayout({
         </div>
       </aside>
 
+
       {/* Main content */}
-      <main className="flex-1 overflow-y-auto bg-background p-[var(--spacing-unit)]">
+      <main className="flex-1 overflow-y-auto bg-background p-(--spacing-unit)">
         <div className="max-w-5xl mx-auto">
           {children}
         </div>

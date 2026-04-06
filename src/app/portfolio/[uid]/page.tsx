@@ -87,7 +87,6 @@ export default async function PortfolioPage({ params }: { params: Promise<{ uid:
               case 'about':
                 return data.about ? (
                   <SectionWrapper key="about" id="about">
-                    <SectionHeading title="About Me" />
                     <AboutSection about={data.about} profile={data.profile} />
                   </SectionWrapper>
                 ) : null
@@ -95,7 +94,6 @@ export default async function PortfolioPage({ params }: { params: Promise<{ uid:
               case 'experience':
                 return data.experiences.length > 0 ? (
                   <SectionWrapper key="experience" id="experience" className="bg-surface/30">
-                    <SectionHeading title="Work Experience" />
                     <ExperienceSection experiences={data.experiences} />
                   </SectionWrapper>
                 ) : null
@@ -103,7 +101,6 @@ export default async function PortfolioPage({ params }: { params: Promise<{ uid:
               case 'projects':
                 return data.projects.length > 0 ? (
                   <SectionWrapper key="projects" id="projects">
-                    <SectionHeading title="Projects" subtitle="Things I&rsquo;ve built" />
                     <ProjectsSection projects={data.projects} />
                   </SectionWrapper>
                 ) : null
@@ -172,7 +169,11 @@ export default async function PortfolioPage({ params }: { params: Promise<{ uid:
           {/* Contact is always last and always visible if settings exist */}
           <SectionWrapper id="contact">
             <SectionHeading title="Get In Touch" subtitle="Let&rsquo;s work together" />
-            <ContactSection about={data.about} profile={data.profile} />
+            <ContactSection
+              profile={data.profile}
+              about={data.about}
+              uid={uid}
+            />
           </SectionWrapper>
 
         </main>

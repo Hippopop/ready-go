@@ -9,24 +9,29 @@ interface NavItemProps {
   href: string;
   label: string;
   icon: LucideIcon;
+  badge?: React.ReactNode;
 }
-
-export function NavItem({ href, label, icon: Icon }: NavItemProps) {
+ 
+export function NavItem({ href, label, icon: Icon, badge }: NavItemProps) {
   const pathname = usePathname();
   const isActive = pathname === href;
-
+ 
   return (
     <Link
       href={href}
       className={cn(
-        "flex items-center gap-3 rounded-[var(--border-radius)] px-3 py-[calc(var(--spacing-unit)*0.5)] text-sm font-medium transition-all duration-[var(--transition-speed)] ease-[var(--transition-easing)] hover:bg-accent hover:text-accent-foreground",
+        "flex items-center justify-between rounded-(--border-radius) px-3 py-[calc(var(--spacing-unit)*0.5)] text-sm font-medium transition-all duration-(--transition-speed) ease-(--transition-easing) hover:bg-accent hover:text-accent-foreground",
         isActive 
           ? "bg-accent text-accent-foreground font-semibold" 
           : "text-muted-foreground"
       )}
     >
-      <Icon className={cn("h-4 w-4", isActive ? "text-primary" : "text-muted-foreground/70")} />
-      {label}
+      <div className="flex items-center gap-3">
+        <Icon className={cn("h-4 w-4", isActive ? "text-primary" : "text-muted-foreground/70")} />
+        {label}
+      </div>
+      {badge}
     </Link>
   );
 }
+
