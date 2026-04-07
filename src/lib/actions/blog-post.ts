@@ -79,7 +79,6 @@ export async function createBlogPost(formData: BlogPostFormValues): Promise<Acti
     reading_time_minutes: parsed.data.reading_time_minutes ?? null,
     tags: parsed.data.tags ?? null,
     display_order: displayOrder,
-    updated_at: new Date().toISOString(),
   });
 
   if (error) {
@@ -132,7 +131,6 @@ export async function updateBlogPost(id: string, formData: BlogPostFormValues): 
       published_at: parsed.data.published_at || null,
       reading_time_minutes: parsed.data.reading_time_minutes ?? null,
       tags: parsed.data.tags ?? null,
-      updated_at: new Date().toISOString(),
     })
     .eq('id', id)
     .eq('user_id', user.id);

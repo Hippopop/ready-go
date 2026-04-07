@@ -74,7 +74,7 @@ export function TestimonialForm({ testimonial, onSuccess, onCancel }: Testimonia
       {feedback && (
         <div
           role="alert"
-          className={`rounded-(--border-radius) px-4 py-3 text-sm font-medium ${
+          className={`rounded-[var(--border-radius)] px-4 py-3 text-sm font-medium ${
             feedback.type === 'success'
               ? 'bg-green-500/10 text-green-600 dark:text-green-400'
               : 'bg-destructive/10 text-destructive'
@@ -96,7 +96,7 @@ export function TestimonialForm({ testimonial, onSuccess, onCancel }: Testimonia
             autoComplete="off"
             placeholder="e.g. Jane Doe"
             {...register('author_name')}
-            className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
           {errors.author_name && (
             <p className="text-xs text-destructive">{errors.author_name.message}</p>
@@ -114,7 +114,7 @@ export function TestimonialForm({ testimonial, onSuccess, onCancel }: Testimonia
             autoComplete="off"
             placeholder="https://linkedin.com/in/username"
             {...register('linkedin_url')}
-            className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
           {errors.linkedin_url && (
             <p className="text-xs text-destructive">{errors.linkedin_url.message}</p>
@@ -134,7 +134,7 @@ export function TestimonialForm({ testimonial, onSuccess, onCancel }: Testimonia
             autoComplete="off"
             placeholder="e.g. Senior Software Engineer"
             {...register('author_title')}
-            className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
           {errors.author_title && (
             <p className="text-xs text-destructive">{errors.author_title.message}</p>
@@ -152,7 +152,7 @@ export function TestimonialForm({ testimonial, onSuccess, onCancel }: Testimonia
             autoComplete="off"
             placeholder="e.g. Google"
             {...register('author_company')}
-            className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
           {errors.author_company && (
             <p className="text-xs text-destructive">{errors.author_company.message}</p>
@@ -171,7 +171,7 @@ export function TestimonialForm({ testimonial, onSuccess, onCancel }: Testimonia
           autoComplete="off"
           placeholder="https://example.com/avatar.jpg"
           {...register('author_avatar_url')}
-          className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         />
         {errors.author_avatar_url && (
           <p className="text-xs text-destructive">{errors.author_avatar_url.message}</p>

@@ -80,7 +80,7 @@ export function CertificationForm({
       {feedback && (
         <div
           role="alert"
-          className={`rounded-(--border-radius) px-4 py-3 text-sm font-medium ${
+          className={`rounded-[var(--border-radius)] px-4 py-3 text-sm font-medium ${
             feedback.type === 'success'
               ? 'bg-green-500/10 text-green-600 dark:text-green-400'
               : 'bg-destructive/10 text-destructive'
@@ -101,7 +101,7 @@ export function CertificationForm({
           autoComplete="off"
           placeholder="e.g. AWS Certified Solutions Architect"
           {...register('name')}
-          className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         />
         {errors.name && (
           <p className="text-xs text-destructive">{errors.name.message}</p>
@@ -119,7 +119,7 @@ export function CertificationForm({
           autoComplete="off"
           placeholder="e.g. Amazon Web Services"
           {...register('issuer')}
-          className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         />
         {errors.issuer && (
           <p className="text-xs text-destructive">{errors.issuer.message}</p>
@@ -136,7 +136,7 @@ export function CertificationForm({
             id="cert-issue-date"
             type="date"
             {...register('issue_date')}
-            className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
           {errors.issue_date && (
             <p className="text-xs text-destructive">{errors.issue_date.message}</p>
@@ -151,7 +151,7 @@ export function CertificationForm({
             id="cert-expiry-date"
             type="date"
             {...register('expiry_date')}
-            className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
           {errors.expiry_date && (
             <p className="text-xs text-destructive">{errors.expiry_date.message}</p>
@@ -170,7 +170,7 @@ export function CertificationForm({
           autoComplete="off"
           placeholder="https://creds.com/my-cert"
           {...register('credential_url')}
-          className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         />
         {errors.credential_url && (
           <p className="text-xs text-destructive">{errors.credential_url.message}</p>
@@ -188,7 +188,7 @@ export function CertificationForm({
           autoComplete="off"
           placeholder="https://creds.com/badge.png"
           {...register('badge_image_url')}
-          className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         />
         {errors.badge_image_url && (
           <p className="text-xs text-destructive">{errors.badge_image_url.message}</p>
@@ -200,14 +200,14 @@ export function CertificationForm({
         <button
           type="button"
           onClick={onCancel}
-          className="inline-flex h-9 items-center justify-center rounded-(--border-radius) border border-input bg-background px-4 text-sm font-medium text-foreground shadow-sm hover:bg-accent hover:text-accent-foreground transition-colors"
+          className="inline-flex h-9 items-center justify-center rounded-[var(--border-radius)] border border-input bg-background px-4 text-sm font-medium text-foreground shadow-sm hover:bg-accent hover:text-accent-foreground transition-colors"
         >
           Cancel
         </button>
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex h-9 items-center justify-center rounded-(--border-radius) bg-primary px-5 text-sm font-medium text-primary-foreground shadow-sm hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="inline-flex h-9 items-center justify-center rounded-[var(--border-radius)] bg-primary px-5 text-sm font-medium text-primary-foreground shadow-sm hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           {isSubmitting ? 'Saving…' : isEditing ? 'Save Changes' : 'Add Certification'}
         </button>

@@ -1,7 +1,5 @@
 "use server";
 
-'use server';
-
 import { revalidatePath } from 'next/cache';
 import { createClient } from '@/lib/supabase/server';
 import { certificationSchema, type CertificationFormValues } from '@/lib/validations/certification';
@@ -82,7 +80,6 @@ export async function createCertification(
     credential_url: parsed.data.credential_url || null,
     badge_image_url: parsed.data.badge_image_url || null,
     display_order: displayOrder,
-    updated_at: new Date().toISOString(),
   });
 
   if (error) {
@@ -137,7 +134,6 @@ export async function updateCertification(
       expiry_date: parsed.data.expiry_date || null,
       credential_url: parsed.data.credential_url || null,
       badge_image_url: parsed.data.badge_image_url || null,
-      updated_at: new Date().toISOString(),
     })
     .eq('id', id)
     .eq('user_id', user.id);

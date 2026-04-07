@@ -67,7 +67,7 @@ function BlogPostCard({
   }
 
   return (
-    <div className="rounded-(--border-radius) border border-border bg-card overflow-hidden">
+    <div className="rounded-[var(--border-radius)] border border-border bg-card overflow-hidden">
       <div className="flex items-start justify-between gap-4 px-5 py-4">
         <div className="min-w-0 flex-1 space-y-1">
           <h3 className="text-sm font-semibold text-card-foreground truncate">
@@ -108,14 +108,14 @@ function BlogPostCard({
                 type="button"
                 disabled={isPending}
                 onClick={handleDelete}
-                className="inline-flex h-8 items-center justify-center rounded-(--border-radius) bg-destructive px-3 text-xs font-medium text-destructive-foreground hover:bg-destructive/90 transition-colors"
+                className="inline-flex h-8 items-center justify-center rounded-[var(--border-radius)] bg-destructive px-3 text-xs font-medium text-destructive-foreground hover:bg-destructive/90 transition-colors"
               >
                 {isPending ? '...' : 'Yes'}
               </button>
               <button
                 type="button"
                 onClick={() => setIsDeleting(false)}
-                className="inline-flex h-8 items-center justify-center rounded-(--border-radius) border border-input bg-background px-3 text-xs font-medium hover:bg-accent transition-colors"
+                className="inline-flex h-8 items-center justify-center rounded-[var(--border-radius)] border border-input bg-background px-3 text-xs font-medium hover:bg-accent transition-colors"
               >
                 No
               </button>
@@ -125,14 +125,14 @@ function BlogPostCard({
               <button
                 type="button"
                 onClick={isEditing ? onCancelEdit : onEdit}
-                className="inline-flex h-8 items-center justify-center rounded-(--border-radius) border border-input bg-background px-3 text-xs font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
+                className="inline-flex h-8 items-center justify-center rounded-[var(--border-radius)] border border-input bg-background px-3 text-xs font-medium text-foreground hover:bg-accent hover:text-accent-foreground transition-colors"
               >
                 {isEditing ? 'Cancel' : 'Edit'}
               </button>
               <button
                 type="button"
                 onClick={() => setIsDeleting(true)}
-                className="inline-flex h-8 items-center justify-center rounded-(--border-radius) border border-destructive/30 bg-destructive/5 px-3 text-xs font-medium text-destructive hover:bg-destructive/10 transition-colors"
+                className="inline-flex h-8 items-center justify-center rounded-[var(--border-radius)] border border-destructive/30 bg-destructive/5 px-3 text-xs font-medium text-destructive hover:bg-destructive/10 transition-colors"
               >
                 Delete
               </button>
@@ -142,7 +142,7 @@ function BlogPostCard({
       </div>
 
       {deleteError && (
-        <div className="mx-5 mb-3 rounded-(--border-radius) bg-destructive/10 px-3 py-2 text-xs text-destructive">
+        <div className="mx-5 mb-3 rounded-[var(--border-radius)] bg-destructive/10 px-3 py-2 text-xs text-destructive">
           {deleteError}
         </div>
       )}
@@ -189,7 +189,7 @@ export function BlogPostList({ blogPosts: initialBlogPosts }: BlogPostListProps)
               setShowAddForm(true);
               setEditingId(null);
             }}
-            className="inline-flex h-9 items-center justify-center rounded-(--border-radius) bg-primary px-4 text-sm font-medium text-primary-foreground shadow-sm hover:bg-primary/90 transition-colors"
+            className="inline-flex h-9 items-center justify-center rounded-[var(--border-radius)] bg-primary px-4 text-sm font-medium text-primary-foreground shadow-sm hover:bg-primary/90 transition-colors"
           >
             + Add Post
           </button>
@@ -197,7 +197,7 @@ export function BlogPostList({ blogPosts: initialBlogPosts }: BlogPostListProps)
       </div>
 
       {showAddForm && (
-        <div className="rounded-(--border-radius) border border-border bg-card px-5 py-5 shadow-sm">
+        <div className="rounded-[var(--border-radius)] border border-border bg-card px-5 py-5 shadow-sm">
           <h3 className="mb-4 text-sm font-semibold text-card-foreground">Add New Blog Post</h3>
           <BlogPostForm
             onSuccess={handleAddSuccess}

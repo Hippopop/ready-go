@@ -60,13 +60,13 @@ function TagInput({ tags, onChange }: TagInputProps) {
 
   return (
     <div
-      className="flex min-h-10 flex-wrap gap-1.5 rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 cursor-text"
+      className="flex min-h-10 flex-wrap gap-1.5 rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 cursor-text"
       onClick={() => inputRef.current?.focus()}
     >
       {tags.map((tag, i) => (
         <span
           key={`${tag}-${i}`}
-          className="inline-flex items-center gap-1 rounded-(--border-radius) bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary"
+          className="inline-flex items-center gap-1 rounded-[var(--border-radius)] bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary"
         >
           {tag}
           <button
@@ -152,7 +152,7 @@ export function BlogPostForm({ blogPost, onSuccess, onCancel }: BlogPostFormProp
       {feedback && (
         <div
           role="alert"
-          className={`rounded-(--border-radius) px-4 py-3 text-sm font-medium ${
+          className={`rounded-[var(--border-radius)] px-4 py-3 text-sm font-medium ${
             feedback.type === 'success'
               ? 'bg-green-500/10 text-green-600 dark:text-green-400'
               : 'bg-destructive/10 text-destructive'
@@ -173,7 +173,7 @@ export function BlogPostForm({ blogPost, onSuccess, onCancel }: BlogPostFormProp
           autoComplete="off"
           placeholder="e.g. My Thoughts on AI in 2024"
           {...register('title')}
-          className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         />
         {errors.title && (
           <p className="text-xs text-destructive">{errors.title.message}</p>
@@ -190,7 +190,7 @@ export function BlogPostForm({ blogPost, onSuccess, onCancel }: BlogPostFormProp
           type="url"
           placeholder="https://medium.com/@user/post-title"
           {...register('url')}
-          className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
         />
         {errors.url && (
           <p className="text-xs text-destructive">{errors.url.message}</p>
@@ -207,7 +207,7 @@ export function BlogPostForm({ blogPost, onSuccess, onCancel }: BlogPostFormProp
           rows={3}
           placeholder="A brief summary of your blog post…"
           {...register('excerpt')}
-          className="flex w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 resize-y min-h-[80px]"
+          className="flex w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 resize-y min-h-[80px]"
         />
         {errors.excerpt && (
           <p className="text-xs text-destructive">{errors.excerpt.message}</p>
@@ -224,7 +224,7 @@ export function BlogPostForm({ blogPost, onSuccess, onCancel }: BlogPostFormProp
             id="blog-published-at"
             type="date"
             {...register('published_at')}
-            className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
           {errors.published_at && (
             <p className="text-xs text-destructive">{errors.published_at.message}</p>
@@ -240,7 +240,7 @@ export function BlogPostForm({ blogPost, onSuccess, onCancel }: BlogPostFormProp
             type="number"
             placeholder="5"
             {...register('reading_time_minutes', { valueAsNumber: true })}
-            className="flex h-10 w-full rounded-(--border-radius) border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="flex h-10 w-full rounded-[var(--border-radius)] border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
           />
           {errors.reading_time_minutes && (
             <p className="text-xs text-destructive">{errors.reading_time_minutes.message}</p>

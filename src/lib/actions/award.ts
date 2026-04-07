@@ -1,7 +1,5 @@
 "use server";
 
-'use server';
-
 import { revalidatePath } from 'next/cache';
 import { createClient } from '@/lib/supabase/server';
 import { awardSchema, type AwardFormValues } from '@/lib/validations/award';
@@ -81,7 +79,6 @@ export async function createAward(
     description: parsed.data.description || null,
     url: parsed.data.url || null,
     display_order: displayOrder,
-    updated_at: new Date().toISOString(),
   });
 
   if (error) {
@@ -135,7 +132,6 @@ export async function updateAward(
       date: parsed.data.date || null,
       description: parsed.data.description || null,
       url: parsed.data.url || null,
-      updated_at: new Date().toISOString(),
     })
     .eq('id', id)
     .eq('user_id', user.id);

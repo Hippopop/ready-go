@@ -140,7 +140,6 @@ export default async function PortfolioPage({ params }: { params: Promise<{ uid:
               case 'blog':
                 return data.blogPosts.length > 0 ? (
                   <SectionWrapper key="blog" id="blog" className="bg-surface/30">
-                    <SectionHeading title="Blog" subtitle="My writing" />
                     <BlogSection blogPosts={data.blogPosts} />
                   </SectionWrapper>
                 ) : null
@@ -148,7 +147,6 @@ export default async function PortfolioPage({ params }: { params: Promise<{ uid:
               case 'awards':
                 return data.awards.length > 0 ? (
                   <SectionWrapper key="awards" id="awards">
-                    <SectionHeading title="Awards & Achievements" />
                     <AwardsSection awards={data.awards} />
                   </SectionWrapper>
                 ) : null
@@ -156,7 +154,6 @@ export default async function PortfolioPage({ params }: { params: Promise<{ uid:
               case 'open_source':
                 return data.openSource.length > 0 ? (
                   <SectionWrapper key="open-source" id="open-source" className="bg-surface/30">
-                    <SectionHeading title="Open Source" subtitle="My contributions" />
                     <OpenSourceSection openSource={data.openSource} />
                   </SectionWrapper>
                 ) : null
