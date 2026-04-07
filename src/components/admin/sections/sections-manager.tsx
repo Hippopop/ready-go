@@ -62,7 +62,7 @@ export function SectionsManager({ sections: initialSections }: SectionsManagerPr
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <p className="text-app-text/40 text-xs uppercase tracking-wider font-medium">
+        <p className="hidden md:block text-app-text/40 text-xs uppercase tracking-wider font-medium">
           Drag to reorder
         </p>
         

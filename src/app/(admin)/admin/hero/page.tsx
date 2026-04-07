@@ -21,7 +21,7 @@ export default async function HeroPage() {
     : null;
 
   return (
-    <div className="mx-auto max-w-2xl space-y-6">
+    <div className="max-w-4xl mx-auto w-full space-y-6">
       {/* Page header */}
       <div>
         <h1 className="text-2xl font-bold text-foreground">Hero Section</h1>

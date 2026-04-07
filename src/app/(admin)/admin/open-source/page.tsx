@@ -9,7 +9,7 @@ export default async function OpenSourcePage() {
   const contributions = await getOpenSourceContributions();
 
   return (
-    <div className="space-y-6">
+    <div className="max-w-4xl mx-auto w-full space-y-6">
       <div>
         <h1 className="text-2xl font-bold tracking-tight text-foreground">Open Source</h1>
         <p className="text-sm text-muted-foreground">

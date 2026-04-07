@@ -202,7 +202,7 @@ export function SkillList({ skills }: SkillListProps) {
                         </div>
                       </div>
                     ) : (
-                      <div className="flex items-center gap-4 px-4 py-3">
+                      <div className="flex flex-wrap sm:flex-nowrap items-center gap-4 px-4 py-3 min-w-0">
                         {/* Optional icon */}
                         {skill.icon_url && (
                           // eslint-disable-next-line @next/next/no-img-element

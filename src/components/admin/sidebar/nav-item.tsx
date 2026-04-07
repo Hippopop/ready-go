@@ -20,14 +20,14 @@ export function NavItem({ href, label, icon: Icon, badge }: NavItemProps) {
     <Link
       href={href}
       className={cn(
-        "flex items-center justify-between rounded-(--border-radius) px-3 py-[calc(var(--spacing-unit)*0.5)] text-sm font-medium transition-all duration-(--transition-speed) ease-(--transition-easing) hover:bg-accent hover:text-accent-foreground",
+        "flex min-h-[44px] items-center justify-between rounded-(--border-radius) px-4 py-3 text-sm font-medium transition-all duration-(--transition-speed) ease-(--transition-easing) hover:bg-accent hover:text-accent-foreground",
         isActive 
           ? "bg-accent text-accent-foreground font-semibold" 
           : "text-muted-foreground"
       )}
     >
       <div className="flex items-center gap-3">
-        <Icon className={cn("h-4 w-4", isActive ? "text-primary" : "text-muted-foreground/70")} />
+        <Icon className={cn("h-4 w-4 shrink-0", isActive ? "text-primary" : "text-muted-foreground/70")} />
         {label}
       </div>
       {badge}

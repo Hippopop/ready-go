@@ -35,9 +35,9 @@ export default async function AdminDashboardPage() {
   } = await supabase.auth.getUser();
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-500">
+    <div className="max-w-5xl mx-auto w-full space-y-8 animate-in fade-in duration-500">
       {/* Welcome & Live Link Banner */}
-      <div className="relative overflow-hidden rounded-[var(--border-radius)] border border-primary/20 bg-primary/5 p-8 md:p-10 shadow-sm">
+      <div className="relative overflow-hidden rounded-(--border-radius) border border-primary/20 bg-primary/5 p-8 md:p-10 shadow-sm">
         <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-2">
             <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-foreground font-heading">
@@ -50,7 +50,7 @@ export default async function AdminDashboardPage() {
           <Link 
             href={`/portfolio/${user?.id}`} 
             target="_blank"
-            className="inline-flex items-center justify-center gap-2 rounded-[var(--border-radius)] bg-primary px-8 py-4 text-base font-bold text-white shadow-lg transition-all duration-[var(--transition-speed)] hover:opacity-90 active:scale-95 whitespace-nowrap"
+            className="inline-flex items-center justify-center gap-2 rounded-(--border-radius) bg-primary px-8 py-4 text-base font-bold text-white shadow-lg transition-all duration-(--transition-speed) hover:opacity-90 active:scale-95 whitespace-nowrap"
           >
             View My Portfolio →
           </Link>
@@ -64,7 +64,7 @@ export default async function AdminDashboardPage() {
 
       {/* Stats / Status Overview (Placeholder for now but looks better) */}
       <div className="grid gap-4 md:grid-cols-3">
-        <div className="rounded-[var(--border-radius)] border border-border bg-card p-6 shadow-sm">
+        <div className="rounded-(--border-radius) border border-border bg-card p-6 shadow-sm">
           <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
             <div className="h-2 w-2 rounded-full bg-emerald-500" />
             Portfolio Live
@@ -74,7 +74,7 @@ export default async function AdminDashboardPage() {
             View Live Site →
           </Link>
         </div>
-        <div className="rounded-[var(--border-radius)] border border-border bg-card p-6 shadow-sm">
+        <div className="rounded-(--border-radius) border border-border bg-card p-6 shadow-sm">
           <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
             <div className="h-2 w-2 rounded-full bg-blue-500" />
             Resume Status
@@ -84,7 +84,7 @@ export default async function AdminDashboardPage() {
             Build Resume →
           </Link>
         </div>
-        <div className="rounded-[var(--border-radius)] border border-border bg-card p-6 shadow-sm">
+        <div className="rounded-(--border-radius) border border-border bg-card p-6 shadow-sm">
           <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
             <div className="h-2 w-2 rounded-full bg-amber-500" />
             Theme Active
@@ -104,10 +104,10 @@ export default async function AdminDashboardPage() {
             <Link
               key={section.href}
               href={section.href}
-              className="group flex flex-col justify-between rounded-[var(--border-radius)] border border-border bg-card p-5 transition-all hover:border-primary/50 hover:shadow-md hover:bg-muted/10"
+              className="group flex flex-col justify-between rounded-(--border-radius) border border-border bg-card p-5 transition-all hover:border-primary/50 hover:shadow-md hover:bg-muted/10"
             >
               <div>
-                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-[var(--border-radius-sm)] bg-primary/5 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-(--border-radius-sm) bg-primary/5 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                   <section.icon size={20} />
                 </div>
                 <h3 className="text-base font-semibold text-foreground">

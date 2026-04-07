@@ -20,11 +20,7 @@ import { Badge } from "@/components/ui/badge";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 
-interface ThemeEditorProps {
-  initialTheme: ThemeConfig;
-}
-
-export function ThemeEditor({ initialTheme: _initialTheme }: ThemeEditorProps) {
+export function ThemeEditor() {
   const { theme, updateTheme, isDirty, setDirty } = useThemeStore();
   const [isSaving, setIsSaving] = useState(false);
   const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
@@ -87,8 +83,8 @@ export function ThemeEditor({ initialTheme: _initialTheme }: ThemeEditorProps) {
         </div>
       )}
 
-      <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
-        <div className="xl:col-span-8 space-y-8">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div className="lg:col-span-8 space-y-8 order-last lg:order-first">
           {/* Quick Presets */}
           <Section icon={<Sparkles className="w-5 h-5 text-primary" />} title="Quick Presets" description="Start with a professionally designed theme.">
             <PresetSelector />
@@ -202,8 +198,8 @@ export function ThemeEditor({ initialTheme: _initialTheme }: ThemeEditorProps) {
         </div>
 
         {/* Live Preview Panel */}
-        <div className="xl:col-span-4">
-          <div className="sticky top-24">
+        <div className="lg:col-span-4 order-first lg:order-last">
+          <div className="lg:sticky lg:top-24">
             <Card className="overflow-hidden border-2 border-primary/20 bg-surface shadow-xl rounded-(--border-radius)">
               <CardHeader className="bg-muted/30">
                 <CardTitle className="text-base font-semibold">Theme Preview</CardTitle>

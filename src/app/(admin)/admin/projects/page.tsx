@@ -10,7 +10,7 @@ export default async function ProjectsPage() {
   const projects = await getProjects();
 
   return (
-    <div className="container max-w-6xl py-10">
+    <div className="max-w-4xl mx-auto w-full">
       <div className="mb-10 flex flex-col gap-1.5">
         <h1 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
           Projects

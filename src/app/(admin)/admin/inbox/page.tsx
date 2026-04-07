@@ -10,7 +10,7 @@ export default async function InboxPage() {
   const unreadCount = await getUnreadCount()
  
   return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <div className="max-w-4xl mx-auto w-full space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div>
         <h1 className="text-3xl font-bold font-heading tracking-tight text-app-text">
           Inbox

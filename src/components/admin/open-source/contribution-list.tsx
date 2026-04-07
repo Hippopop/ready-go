@@ -184,7 +184,7 @@ export function ContributionList({ contributions }: ContributionListProps) {
                   />
                 )}
                 {/* Ensure buttons are clickable even with the link overlay */}
-                <div className="absolute right-5 bottom-5 z-10 flex gap-2" pointer-events="none">
+                <div className="absolute right-5 bottom-5 z-10 flex gap-2 pointer-events-none">
                    {/* This is a trick to make buttons clickable above the overlay */}
                 </div>
               </>

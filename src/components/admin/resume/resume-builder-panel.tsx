@@ -117,7 +117,7 @@ export default function ResumeBuilderPanel({
         <h2 className="font-heading text-base font-semibold text-app-text mb-3">
           Select Template
         </h2>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
           {TEMPLATES.map(t => (
             <button
               key={t.id}
@@ -145,6 +145,7 @@ export default function ResumeBuilderPanel({
             (what you see is what downloads)
           </span>
         </h2>
+        
         <PDFViewer template={template} data={previewData} />
       </div>
 

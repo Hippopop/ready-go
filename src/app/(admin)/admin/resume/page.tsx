@@ -19,7 +19,7 @@ export default async function ResumePage() {
   if (!data) return null
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto w-full">
       <div className="mb-6">
         <h1 className="font-heading text-2xl font-bold text-app-text">Resume Builder</h1>
         <p className="font-body text-app-text/60 mt-1">

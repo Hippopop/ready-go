@@ -10,7 +10,7 @@ export default async function EducationPage() {
   const educationList = await getEducation();
 
   return (
-    <div className="mx-auto max-w-4xl space-y-6">
+    <div className="max-w-4xl mx-auto w-full space-y-6">
       <div>
         <h1 className="text-2xl font-bold tracking-tight">Education</h1>
         <p className="text-sm text-muted-foreground">
@@ -18,7 +18,7 @@ export default async function EducationPage() {
         </p>
       </div>
 
-      <div className="rounded-[var(--border-radius)] border bg-card p-6 shadow-sm">
+      <div className="rounded-(--border-radius) border bg-card p-6 shadow-sm">
         <EducationList educationList={educationList} />
       </div>
     </div>

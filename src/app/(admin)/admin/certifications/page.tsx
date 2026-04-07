@@ -11,7 +11,7 @@ export default async function CertificationsPage() {
   const certifications = await getCertifications();
 
   return (
-    <div className="container max-w-4xl py-10">
+    <div className="max-w-4xl mx-auto w-full">
       <div className="mb-8 border-b border-border pb-6">
         <h1 className="text-3xl font-bold tracking-tight text-foreground">Certifications</h1>
         <p className="mt-2 text-muted-foreground">

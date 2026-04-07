@@ -7,13 +7,13 @@ export const metadata = {
 };
 
 export default async function ThemePage() {
-  const theme = await getTheme();
+  await getTheme(); // Fetch it on the server to ensure it's in the cache / DB is warm
 
   return (
-    <div className="container max-w-7xl mx-auto p-4 md:p-8 space-y-8">
+    <div className="max-w-6xl mx-auto w-full space-y-8">
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-3">
-          <div className="p-3 bg-primary/10 text-primary rounded-[var(--border-radius)]">
+          <div className="p-3 bg-primary/10 text-primary rounded-(--border-radius)">
             <Palette className="w-8 h-8" />
           </div>
           <div>
@@ -25,7 +25,7 @@ export default async function ThemePage() {
         </div>
       </div>
 
-      <ThemeEditor initialTheme={theme} />
+      <ThemeEditor />
     </div>
   );
 }

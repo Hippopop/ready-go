@@ -6,7 +6,7 @@ export default async function SkillsPage() {
   const skills = result.success ? (result.data ?? []) : [];
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6">
+    <div className="max-w-4xl mx-auto w-full space-y-6">
       {/* Page header */}
       <div>
         <h1 className="text-2xl font-bold text-foreground">
@@ -21,7 +21,7 @@ export default async function SkillsPage() {
       {!result.success && (
         <div
           role="alert"
-          className="rounded-[var(--border-radius-sm)] border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive"
+          className="rounded-(--border-radius-sm) border border-destructive/30 bg-destructive/10 px-4 py-3 text-sm text-destructive"
         >
           {result.error ?? 'Failed to load skills. Please refresh the page.'}
         </div>

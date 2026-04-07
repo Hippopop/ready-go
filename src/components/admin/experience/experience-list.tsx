@@ -231,9 +231,9 @@ export function ExperienceList({ experiences: initialExperiences }: ExperienceLi
           </p>
         </div>
       ) : (
-        <ul className="space-y-3" role="list">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
           {experiences.map((exp) => (
-            <li key={exp.id}>
+            <div key={exp.id}>
               <ExperienceCard
                 experience={exp}
                 isEditing={editingId === exp.id}
@@ -244,9 +244,9 @@ export function ExperienceList({ experiences: initialExperiences }: ExperienceLi
                 onCancelEdit={() => setEditingId(null)}
                 onDeleted={() => handleDeleted(exp.id)}
               />
-            </li>
+            </div>
           ))}
-        </ul>
+        </div>
       )}
     </div>
   );

@@ -140,12 +140,6 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=
 SUPABASE_SERVICE_ROLE_KEY=
 NEXT_PUBLIC_APP_URL=
 
-## Current phase
-Phase 3 — Public portfolio website (single scrolling page).
-Admin panel, theme engine, and section settings are complete.
-Section settings auto-initialize on signup via Supabase trigger.
-Portfolio data fetched via getPortfolioData() using Promise.all.
-
 ## Accounts and services used
 - Supabase: free tier (database + auth + storage)
 - Vercel: free tier (deployment)

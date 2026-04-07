@@ -9,7 +9,7 @@ export default async function AboutPage() {
   ]);
 
   return (
-    <div className="space-y-8">
+    <div className="max-w-4xl mx-auto w-full space-y-8">
       {/* Page header */}
       <div>
         <h1 className="text-2xl font-bold text-foreground">About</h1>

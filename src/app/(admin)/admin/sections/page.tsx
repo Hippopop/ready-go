@@ -10,7 +10,7 @@ export default async function SectionsPage() {
   const sections = await getSectionSettings()
  
   return (
-    <div className="space-y-6">
+    <div className="max-w-4xl mx-auto w-full space-y-6">
       <div>
         <h1 className="text-3xl font-bold text-app-text font-heading">Sections</h1>
         <p className="text-app-text/60 font-body">
@@ -19,7 +19,7 @@ export default async function SectionsPage() {
       </div>
  
       {sections.length === 0 ? (
-        <div className="bg-surface rounded-[var(--border-radius)] border border-app-text/10 p-8 text-center">
+        <div className="bg-surface rounded-(--border-radius) border border-app-text/10 p-8 text-center">
           <p className="text-app-text/60 font-body">
             No sections found. Please contact support.
           </p>
