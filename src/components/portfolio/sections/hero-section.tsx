@@ -72,7 +72,7 @@ export default function HeroSection({
         }}
       />
       
-      <div className="container mx-auto px-[var(--spacing-unit)] z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div className="container mx-auto px-(--spacing-unit) z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         {/* Left Content */}
         <div className="flex flex-col space-y-6 text-center md:text-left">
           <h1 className="font-heading text-5xl md:text-7xl font-bold text-app-text leading-tight">
@@ -100,7 +100,7 @@ export default function HeroSection({
             {hero.cta_primary_text && (
               <Link
                 href={hero.cta_primary_url || '#projects'}
-                className="bg-primary text-white px-8 py-3 rounded-[var(--border-radius)] font-body font-medium transition-all duration-[var(--transition-speed)] ease-[var(--transition-easing)] hover:opacity-90 active:scale-95 flex items-center gap-2"
+                className="bg-primary text-white px-8 py-3 rounded-(--border-radius) font-body font-medium transition-all duration-(--transition-speed) ease-(--transition-easing) hover:opacity-90 active:scale-95 flex items-center gap-2"
               >
                 {hero.cta_primary_text}
                 <ArrowRight className="w-4 h-4" />
@@ -109,9 +109,8 @@ export default function HeroSection({
             
             {hero.cta_secondary_text && (
               <Link
-                href={`/api/resume/${uid}/download`}
-                download
-                className="border-2 border-primary text-primary px-8 py-3 rounded-[var(--border-radius)] font-body font-medium transition-all duration-[var(--transition-speed)] ease-[var(--transition-easing)] hover:bg-primary/5 active:scale-95 flex items-center gap-2"
+                href={`/portfolio/${uid}/resume`}
+                className="border-2 border-primary text-primary px-8 py-3 rounded-(--border-radius) font-body font-medium transition-all duration-(--transition-speed) ease-(--transition-easing) hover:bg-primary/5 active:scale-95 flex items-center gap-2"
               >
                 {hero.cta_secondary_text}
                 <FileDown className="w-4 h-4" />

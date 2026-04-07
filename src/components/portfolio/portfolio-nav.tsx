@@ -148,8 +148,7 @@ export default function PortfolioNav({ profile, sectionSettings, uid, hasResume 
 
             {hasResume && (
               <Link
-                href={`/api/resume/${uid}/download`}
-                download
+                href={`/portfolio/${uid}/resume`}
                 className="flex items-center gap-2 border border-primary text-primary rounded-(--border-radius) px-4 py-2 text-sm font-body hover:bg-primary/5 transition-all duration-(--transition-speed) ease-(--transition-easing)"
               >
                 <Download className="w-4 h-4" />
@@ -200,8 +199,7 @@ export default function PortfolioNav({ profile, sectionSettings, uid, hasResume 
 
           {hasResume && (
             <Link
-              href={`/api/resume/${uid}/download`}
-              download
+              href={`/portfolio/${uid}/resume`}
               onClick={() => setMobileMenuOpen(false)}
               className="mt-4 flex items-center gap-2 bg-primary text-white rounded-(--border-radius) px-8 py-4 text-xl font-body hover:opacity-90 transition-all duration-(--transition-speed)"
             >

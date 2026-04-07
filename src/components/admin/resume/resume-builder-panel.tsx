@@ -1,150 +1,153 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { ResumeData, ResumeTemplate } from '@/types/resume'
 import { updateResumeSettings } from '@/lib/actions/resume'
-import TemplateSelector from '@/components/resume/template-selector'
-import ResumePreview from '@/components/resume/resume-preview'
-import { Button } from '@/components/ui/button'
-import { Switch } from '@/components/ui/switch'
-import { Label } from '@/components/ui/label'
-import { Download } from 'lucide-react'
-import { createClient } from '@/lib/supabase/client'
+import dynamic from 'next/dynamic'
 
-interface ResumeBuilderPanelProps {
+const PDFViewer = dynamic(() => import('@/components/resume/PDFViewer'), { ssr: false })
+
+const TEMPLATES: { id: ResumeTemplate; label: string; desc: string }[] = [
+  { id: 'executive', label: 'Executive',  desc: 'Two-column with sidebar' },
+  { id: 'minimal',   label: 'Minimal',    desc: 'Single-column monospace' },
+  { id: 'creative',  label: 'Creative',   desc: 'Bold header with gradients' },
+]
+
+interface Props {
   data: ResumeData
-  settings: {
-    include_photo: boolean | null
-    ats_mode: boolean | null
-    default_template: string | null
-  } | null
+  initialTemplate: ResumeTemplate
+  initialAts: boolean
+  initialPhoto: boolean
 }
 
-export default function ResumeBuilderPanel({ data, settings }: ResumeBuilderPanelProps) {
-  const [selectedTemplate, setSelectedTemplate] = useState<ResumeTemplate>(
-    (settings?.default_template as ResumeTemplate) || 'executive'
-  )
-  const [atsMode, setAtsMode] = useState(settings?.ats_mode || false)
-  const [includePhoto, setIncludePhoto] = useState(settings?.include_photo || false)
-  const [loading, setLoading] = useState(false)
-  const [uid, setUid] = useState<string | null>(null)
+export default function ResumeBuilderPanel({
+  data,
+  initialTemplate,
+  initialAts,
+  initialPhoto,
+}: Props) {
+  const [template, setTemplate]     = useState<ResumeTemplate>(initialTemplate)
+  const [ats, setAts]               = useState(initialAts)
+  const [includePhoto, setPhoto]    = useState(initialPhoto)
+  const [saving, setSaving]         = useState(false)
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      const supabase = createClient()
-      const { data: { user } } = await supabase.auth.getUser()
-      if (user) setUid(user.id)
-    }
-    fetchUser()
-  }, [])
-
-  const handleUpdateSetting = async (updates: Partial<{
-    default_template: string
-    ats_mode: boolean
-    include_photo: boolean
-  }>) => {
-    setLoading(true)
-    const result = await updateResumeSettings(updates)
-    if ('error' in result) {
-      alert(result.error)
-    }
-    setLoading(false)
-  }
-
-  const handleDownload = () => {
-    if (!uid) return
-    window.open(
-      `/api/resume/${uid}/download?template=${selectedTemplate}${atsMode ? '&ats=true' : ''}`,
-      '_blank'
-    )
-  }
-
-  const previewData = {
+  // Merge current settings into the data object for live preview
+  const previewData: ResumeData = {
     ...data,
     resumeSettings: {
       ...data.resumeSettings,
-      ats_mode: atsMode,
+      ats_mode: ats,
       include_photo: includePhoto,
-      default_template: selectedTemplate
-    }
+      default_template: template,
+    },
+  }
+
+  const handleTemplateSelect = async (t: ResumeTemplate) => {
+    setTemplate(t)
+    setSaving(true)
+    await updateResumeSettings({ default_template: t })
+    setSaving(false)
+  }
+
+  const handleAtsToggle = async (checked: boolean) => {
+    setAts(checked)
+    setSaving(true)
+    await updateResumeSettings({ ats_mode: checked })
+    setSaving(false)
+  }
+
+  const handlePhotoToggle = async (checked: boolean) => {
+    setPhoto(checked)
+    setSaving(true)
+    await updateResumeSettings({ include_photo: checked })
+    setSaving(false)
   }
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
-      
-      {/* Top bar — controls */}
-      <div className="bg-surface rounded-(--border-radius) border border-app-text/10 p-4 flex items-center justify-between flex-wrap gap-4">
-        <div className="flex flex-wrap items-center gap-8">
-          <div className="flex items-center space-x-3">
-            <Switch
-              id="ats-mode"
-              checked={atsMode}
-              onCheckedChange={(checked) => {
-                setAtsMode(checked)
-                handleUpdateSetting({ ats_mode: checked })
-              }}
-              disabled={loading}
+    <div className="flex flex-col gap-6">
+
+      {/* Controls bar */}
+      <div className="bg-surface rounded-(--border-radius) border border-app-text/10 p-4 flex flex-wrap items-center gap-6">
+        
+        {/* ATS toggle */}
+        <label className="flex items-center gap-3 cursor-pointer">
+          <div className="relative">
+            <input
+              type="checkbox"
+              checked={ats}
+              onChange={e => handleAtsToggle(e.target.checked)}
+              className="sr-only"
             />
-            <div className="space-y-0.5">
-              <Label htmlFor="ats-mode" className="text-sm font-medium cursor-pointer">ATS Mode</Label>
-              <p className="text-[10px] text-app-text/50">Removes colors for scanner compatibility</p>
+            <div className={`w-10 h-6 rounded-full transition-colors duration-200 ${ats ? 'bg-primary' : 'bg-app-text/20'}`}>
+              <div className={`w-4 h-4 bg-white rounded-full absolute top-1 transition-transform duration-200 ${ats ? 'translate-x-5' : 'translate-x-1'}`} />
             </div>
           </div>
-
-          <div className="flex items-center space-x-3">
-            <Switch
-              id="include-photo"
-              checked={includePhoto}
-              onCheckedChange={(checked) => {
-                setIncludePhoto(checked)
-                handleUpdateSetting({ include_photo: checked })
-              }}
-              disabled={loading}
-            />
-            <Label htmlFor="include-photo" className="text-sm font-medium cursor-pointer">Include Photo</Label>
+          <div>
+            <p className="font-body text-sm font-medium text-app-text">ATS Mode</p>
+            <p className="font-body text-xs text-app-text/50">Removes colors for scanner compatibility</p>
           </div>
-        </div>
+        </label>
 
-        <Button
-          onClick={handleDownload}
-          className="bg-primary text-white hover:opacity-90 min-w-[160px]"
-        >
-          <Download className="w-4 h-4 mr-2" />
-          Download PDF
-        </Button>
+        {/* Include photo toggle */}
+        <label className="flex items-center gap-3 cursor-pointer">
+          <div className="relative">
+            <input
+              type="checkbox"
+              checked={includePhoto}
+              onChange={e => handlePhotoToggle(e.target.checked)}
+              className="sr-only"
+            />
+            <div className={`w-10 h-6 rounded-full transition-colors duration-200 ${includePhoto ? 'bg-primary' : 'bg-app-text/20'}`}>
+              <div className={`w-4 h-4 bg-white rounded-full absolute top-1 transition-transform duration-200 ${includePhoto ? 'translate-x-5' : 'translate-x-1'}`} />
+            </div>
+          </div>
+          <div>
+            <p className="font-body text-sm font-medium text-app-text">Include Photo</p>
+            <p className="font-body text-xs text-app-text/50">Add profile photo to supported templates</p>
+          </div>
+        </label>
+
+        {saving && (
+          <p className="font-body text-xs text-app-text/40 ml-auto">Saving...</p>
+        )}
       </div>
 
-      {/* Template selector — full width */}
+      {/* Template selector */}
       <div>
-        <h2 className="font-heading text-lg font-semibold text-app-text mb-4">
+        <h2 className="font-heading text-base font-semibold text-app-text mb-3">
           Select Template
         </h2>
-        <TemplateSelector
-          currentTemplate={selectedTemplate}
-          data={previewData}
-          onSelect={(template) => {
-            setSelectedTemplate(template)
-            handleUpdateSetting({ default_template: template })
-          }}
-        />
+        <div className="grid grid-cols-3 gap-3">
+          {TEMPLATES.map(t => (
+            <button
+              key={t.id}
+              onClick={() => handleTemplateSelect(t.id)}
+              className={`p-3 rounded-(--border-radius) border-2 text-left transition-all duration-(--transition-speed) ${
+                template === t.id
+                  ? 'border-primary bg-primary/5'
+                  : 'border-app-text/10 bg-surface hover:border-primary/40'
+              }`}
+            >
+              <p className={`font-heading text-sm font-semibold ${template === t.id ? 'text-primary' : 'text-app-text'}`}>
+                {t.label}
+              </p>
+              <p className="font-body text-xs text-app-text/50 mt-0.5">{t.desc}</p>
+            </button>
+          ))}
+        </div>
       </div>
 
-      {/* Live preview — full width, centered */}
+      {/* Live PDF preview + download */}
       <div>
-        <h2 className="font-heading text-lg font-semibold text-app-text mb-4">
-          Live Preview — {selectedTemplate}
+        <h2 className="font-heading text-base font-semibold text-app-text mb-3">
+          Live Preview — {template}
+          <span className="font-body text-xs text-app-text/40 font-normal ml-2">
+            (what you see is what downloads)
+          </span>
         </h2>
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <ResumePreview
-            template={selectedTemplate}
-            data={previewData}
-            scale={0.75}
-            showLabel={false}
-          />
-        </div>
+        <PDFViewer template={template} data={previewData} />
       </div>
 
     </div>
   )
 }
-
