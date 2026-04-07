@@ -47,11 +47,23 @@ export default function PDFViewerInner({
               onClick={() => {
                 if (!blob) return
                 const url = URL.createObjectURL(blob)
+                
+                // Create a temporary link and set attributes for better mobile support
                 const a = document.createElement('a')
                 a.href = url
                 a.download = `${name}_resume.pdf`
+                a.target = '_blank'
+                a.rel = 'noopener noreferrer'
+                
+                // Append to body and trigger click
+                document.body.appendChild(a)
                 a.click()
-                URL.revokeObjectURL(url)
+                
+                // Cleanup: remove fixed element and delay revocation for mobile browsers
+                document.body.removeChild(a)
+                setTimeout(() => {
+                  URL.revokeObjectURL(url)
+                }, 1000)
               }}
               className={cn(
                 "flex items-center gap-2 px-10 py-4 font-heading font-bold text-white rounded-(--border-radius) transition-all duration-(--transition-speed) ease-(--transition-easing) active:scale-95 shadow-lg",
