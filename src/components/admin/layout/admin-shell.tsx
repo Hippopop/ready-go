@@ -35,7 +35,7 @@ export default function AdminShell({ children, userEmail, unreadCount = 0 }: Adm
   }, [sidebarOpen])
 
   return (
-    <div className="min-h-screen bg-background flex">
+    <div className="h-screen overflow-hidden bg-background flex">
 
       {/* ── BACKDROP (mobile only) ── */}
       {sidebarOpen && (
@@ -101,7 +101,7 @@ export default function AdminShell({ children, userEmail, unreadCount = 0 }: Adm
         </header>
 
         {/* ── PAGE CONTENT ── */}
-        <main className="flex-1 p-4 md:p-6 lg:p-8 overflow-x-hidden">
+        <main className="flex-1 p-4 md:p-6 lg:p-8 overflow-y-auto overflow-x-hidden">
           {children}
         </main>
 

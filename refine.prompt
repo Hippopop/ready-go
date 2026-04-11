@@ -1,0 +1,319 @@
+# Ready-Go — Project Context
+
+You are helping me refine and perfect a full-stack SaaS product called **Ready-Go**.
+This is NOT a new project. The core system is already built and deployed on Vercel.
+Your job is to help me clean, refine, fix bugs, and add features to an existing codebase.
+
+Read this entire document before responding to anything.
+
+---
+
+## What Ready-Go is
+
+A portfolio website generator for software engineers. Users sign up, fill in their
+content via an admin panel, customize the visual theme, and get a publicly shareable
+portfolio website + downloadable PDF resume — all without writing code.
+
+---
+
+## Two surfaces
+
+1. **Admin panel** — protected at `/admin/*`, requires auth
+2. **Portfolio website** — public at `/portfolio/[uid]`, no auth required
+
+---
+
+## Tech stack (do not suggest alternatives)
+
+- **Framework**: Next.js 16, App Router, TypeScript strict mode
+- **Styling**: Tailwind CSS v4 + shadcn/ui components
+- **Database + Auth + Storage**: Supabase (PostgreSQL, Supabase Auth, Supabase Storage)
+- **State**: Zustand (theme live-preview store only)
+- **Forms**: React Hook Form + Zod (client + server validation on every form)
+- **PDF generation**: @react-pdf/renderer (100% client-side, no Puppeteer)
+- **Email**: via Supabase authenticated
+- **Deployment**: Vercel (free tier)
+- **Package manager**: npm
+- **AI coding tool**: Google AntiGravity (agent-first IDE)
+- **Version control**: GitHub (private repo)
+
+---
+
+## Folder structure
+
+```
+src/
+  app/
+    (admin)/              ← admin route group, protected
+      admin/
+        page.tsx          ← dashboard
+        hero/page.tsx
+        about/page.tsx
+        experience/page.tsx
+        projects/page.tsx
+        skills/page.tsx
+        education/page.tsx
+        certifications/page.tsx
+        testimonials/page.tsx
+        blog/page.tsx
+        awards/page.tsx
+        open-source/page.tsx
+        sections/page.tsx
+        theme/page.tsx
+        resume/page.tsx
+        inbox/page.tsx
+    portfolio/
+      [uid]/
+        page.tsx          ← public portfolio
+        resume/page.tsx   ← public resume viewer
+    api/
+      contact/[uid]/route.ts
+    login/page.tsx
+    signup/page.tsx
+    page.tsx              ← product landing page (placeholder)
+  components/
+    admin/
+      layout/admin-shell.tsx    ← mobile-responsive shell with drawer sidebar
+      sidebar/
+        sidebar-nav.tsx
+        nav-item.tsx
+        inbox-nav-item.tsx
+      hero/hero-form.tsx
+      about/about-form.tsx, social-links-manager.tsx
+      experience/experience-form.tsx, experience-list.tsx
+      projects/project-form.tsx, project-list.tsx
+      skills/skill-form.tsx, skill-list.tsx
+      education/education-form.tsx, education-list.tsx
+      certifications/certification-form.tsx, certification-list.tsx
+      testimonials/testimonial-form.tsx, testimonial-list.tsx
+      blog/blog-post-form.tsx, blog-post-list.tsx
+      awards/award-form.tsx, award-list.tsx
+      open-source/contribution-form.tsx, contribution-list.tsx
+      sections/sections-manager.tsx, section-item.tsx
+      theme/theme-editor.tsx, preset-selector.tsx, color-picker.tsx, font-picker.tsx
+      resume/resume-builder-panel.tsx
+      inbox/inbox-list.tsx, message-card.tsx
+      sign-out-button.tsx
+    portfolio/
+      sections/
+        hero-section.tsx
+        about-section.tsx
+        experience-section.tsx
+        projects-section.tsx
+        skills-section.tsx
+        education-section.tsx
+        certifications-section.tsx
+        testimonials-section.tsx
+        blog-section.tsx
+        awards-section.tsx
+        open-source-section.tsx
+      portfolio-nav.tsx
+      contact-section.tsx
+      scroll-to-top.tsx
+      section-wrapper.tsx
+      section-heading.tsx
+      public-resume-viewer.tsx
+    resume/
+      templates/
+        ExecutivePDF.tsx    ← two-column, Inter font
+        MinimalPDF.tsx      ← single-column monospace, DM Mono font
+        CreativePDF.tsx     ← bold header, Plus Jakarta Sans font
+      PDFViewer.tsx         ← dynamic import wrapper
+      PDFViewerInner.tsx    ← BlobProvider + embed/mobile fallback
+      pdf-styles.ts
+    theme-provider.tsx
+    ui/                   ← shadcn/ui components
+  lib/
+    supabase/
+      client.ts           ← browser client (anon key)
+      server.ts           ← server client (anon key + cookies)
+      middleware.ts        ← helper for proxy.ts
+    actions/
+      hero.ts, about.ts, experience.ts, project.ts, skill.ts
+      education.ts, certification.ts, testimonial.ts, blog-post.ts
+      award.ts, open-source.ts, section-settings.ts
+      theme.ts, resume.ts, contact.ts, portfolio.ts
+    validations/
+      hero.ts, about.ts, experience.ts, project.ts, skill.ts
+      education.ts, certification.ts, testimonial.ts, blog-post.ts
+      award.ts, open-source.ts, contact.ts, theme.ts, section-settings.ts
+    theme-presets.ts      ← 6 presets: Minimal, Cyberpunk, shadcn, Ocean, Sunset, Forest
+    theme-utils.ts        ← themeToCssVars(), getGoogleFontsUrl()
+    resume-fonts.ts       ← Font.register() for react-pdf (Inter, DM Mono, Plus Jakarta Sans)
+  hooks/
+  stores/
+    theme-store.ts        ← Zustand: setTheme (silent), updateTheme (dirty), applyPreset
+  types/
+    database.ts           ← generated from Supabase schema
+    index.ts              ← re-exports + SectionKey, ThemeConfig, Profile
+    resume.ts             ← ResumeData, ResumeTemplate types
+  proxy.ts                ← Next.js 16 request interception (named export: proxy)
+```
+
+---
+
+## Database tables (all in Supabase PostgreSQL)
+
+### One-per-user (unique on user_id)
+- `profiles` — id (FK auth.users), username, full_name, email, avatar_url
+- `themes` — all theme tokens (colors, fonts, radius, spacing, mode, animation, preset_name)
+- `hero` — headline, subheadline, tagline, profile_image_url, cta texts, typing_texts[]
+- `about` — bio, location, availability_status, years_of_experience
+- `resume_settings` — default_template, include_photo, ats_mode
+
+### Many-per-user (full CRUD)
+- `experiences` — company, role, dates, is_current, description, tech_stack[]
+- `projects` — title, description, urls, tech_stack[], is_featured
+- `skills` — name, category, proficiency (1-5), years_of_experience
+- `education` — institution, degree, field_of_study, years, gpa, honors
+- `certifications` — name, issuer, dates, credential_url
+- `testimonials` — author details, content, linkedin_url
+- `blog_posts` — title, excerpt, url, published_at, tags[]
+- `awards` — title, issuer, date, description, url
+- `open_source_contributions` — repo_name, repo_url, language, stars, role
+- `social_links` — platform, url, display_order
+- `section_settings` — section_key, is_visible, display_order
+- `contact_submissions` — sender_name, sender_email, message, is_read, portfolio_owner_id
+
+### RLS pattern
+- All content tables: public SELECT (portfolio visitors can read), owner-only INSERT/UPDATE/DELETE
+- `resume_settings`: owner-only all operations
+- `contact_submissions`: public INSERT, owner-only SELECT/UPDATE/DELETE
+- Storage (media bucket): public SELECT, authenticated INSERT, owner DELETE (/{user_id}/ prefix)
+
+### Supabase triggers (fire on auth.users INSERT)
+1. `handle_new_user` — creates: profile, theme (Minimal defaults), hero (placeholder), about, resume_settings
+2. `handle_new_user_section_settings` — creates 11 section_settings rows (hero/about/experience/projects/skills/education visible; rest hidden)
+
+---
+
+## Routing
+
+| Route | Description |
+|---|---|
+| `/` | Product landing page (placeholder — needs building) |
+| `/login` | Email + password login |
+| `/signup` | Registration with email confirmation via Supabase authentication |
+| `/admin` | Dashboard |
+| `/admin/[section]` | Each content section editor |
+| `/admin/sections` | Section visibility + drag-to-reorder manager |
+| `/admin/theme` | Full theme customizer with live preview |
+| `/admin/resume` | Resume builder — 3 templates, PDF preview, download |
+| `/admin/inbox` | Contact form submissions inbox |
+| `/portfolio/[uid]` | Public portfolio (single-scroll, all visible sections) |
+| `/portfolio/[uid]/resume` | Public resume viewer with download |
+| `/api/contact/[uid]` | POST — stores contact form submission |
+
+---
+
+## Theme engine (critical — every agent must follow this)
+
+CSS custom properties injected into `:root` on every page:
+```
+--color-primary, --color-accent, --color-background, --color-surface, --color-text
+--font-heading, --font-body
+--border-radius, --border-radius-sm
+--spacing-unit
+--transition-speed, --transition-easing
+```
+
+Tailwind classes mapped to these vars:
+```
+bg-primary, bg-accent, bg-background, bg-surface, text-app-text
+font-heading, font-body
+rounded-[var(--border-radius)]
+p-[var(--spacing-unit)]
+transition-all duration-[var(--transition-speed)] ease-[var(--transition-easing)]
+```
+
+**Hard rules:**
+- NEVER hardcode Tailwind color classes (bg-indigo-600, text-gray-900, bg-white etc.)
+- NEVER hardcode rounded-md / rounded-lg on cards, buttons, inputs
+- NEVER hardcode font families
+- Dark mode via `dark:` prefix + `dark` class toggled on `<html>` by ThemeProvider
+- SSR: theme injected via `<style id="ready-go-theme">:root{...}</style>` in layout.tsx
+- Client: ThemeProvider (Zustand) keeps style tag in sync for live preview
+
+---
+
+## PDF resume system
+
+- Library: `@react-pdf/renderer` (browser-only, zero server involvement)
+- Three templates: ExecutivePDF (two-col), MinimalPDF (mono), CreativePDF (bold header)
+- All templates use react-pdf primitives: `<Document>`, `<Page>`, `<View>`, `<Text>`, `<Link>`, `<Image>`
+- All styles are inline StyleSheet objects — NO Tailwind inside templates
+- Fonts registered via `registerResumeFonts()` in `src/lib/resume-fonts.ts`
+- Preview: `BlobProvider` → `<embed>` on desktop, card + open/download buttons on mobile
+- Mobile detection: `navigator.userAgent` in `useEffect` (avoids hydration mismatch)
+- Public access: visitors go to `/portfolio/[uid]/resume` → `PublicResumeViewer` fetches data client-side
+
+---
+
+## Admin panel responsiveness
+
+- Mobile: slide-in sidebar drawer with hamburger button in sticky top bar
+- Desktop: sidebar always visible on left
+- Implemented via `AdminShell` client component in `src/components/admin/layout/admin-shell.tsx`
+- Sidebar closes automatically on route change (via `usePathname` effect)
+- All page content: `max-w-4xl mx-auto` wrapper
+- PDF viewer hidden on mobile (replaced with open/download buttons)
+
+---
+
+## Key rules for all code in this project
+
+1. Server components by default — `'use client'` only when interaction requires it
+2. All DB access via server actions or API routes — never raw Supabase calls in client components (except public portfolio/resume fetches via anon client)
+3. NEXT_PUBLIC_SUPABASE_ANON_KEY on client, SUPABASE_SERVICE_ROLE_KEY only on server
+4. All forms: React Hook Form + Zod (validate both client and server)
+5. Images via Supabase Storage (/{user_id}/filename) — never binary in DB
+6. Use `src/proxy.ts` not `middleware.ts` — Next.js 16 convention, named export `proxy`
+7. Never commit .env files — all secrets in .env.local only
+8. Never hardcode colors, fonts, or radius — always use theme CSS vars
+
+---
+
+## What is complete
+
+- ✅ Auth flow (signup, email confirmation via supabase authentication, login, signout)
+- ✅ All 11 content section editors (hero, about, experience, projects, skills, education, certifications, testimonials, blog, awards, open source)
+- ✅ Social links manager
+- ✅ Section settings (visibility toggle + drag-to-reorder)
+- ✅ Full theme engine (6 presets, color/font/radius/spacing/animation/dark mode, live preview, persists to DB)
+- ✅ Public portfolio website (single-scroll, respects section visibility + order, themed)
+- ✅ Portfolio navigation (sticky, IntersectionObserver active section, mobile hamburger)
+- ✅ Resume builder (3 templates, PDF preview, ATS mode, include photo toggle)
+- ✅ PDF generation client-side via @react-pdf/renderer (works on Vercel free tier)
+- ✅ Mobile-responsive admin panel (drawer sidebar)
+- ✅ Contact form system (API route, rate limiting, admin inbox with read/unread/delete)
+- ✅ Deployed on Vercel
+
+## What is NOT done yet
+
+- ⬜ Product landing page at `/` (marketing page for Ready-Go itself)
+- ⬜ Custom domain setup
+- ⬜ Analytics (page views, resume download tracking)
+- ⬜ Portfolio section animations (scroll-triggered reveals)
+- ⬜ Image upload UI in admin (currently URL input only)
+- ⬜ Username-based portfolio URLs (/portfolio/username instead of /portfolio/uid)
+- ⬜ GitHub stats widget integration
+- ⬜ White-label settings (custom logo, remove "Built with Ready-Go")
+- ⬜ Multi-user support
+
+---
+
+## Environment variables in use
+
+```
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=        ← publishable key (new Supabase format)
+SUPABASE_SERVICE_ROLE_KEY=            ← secret key (new Supabase format)
+NEXT_PUBLIC_APP_URL=                  ← Vercel deployment URL
+PUPPETEER_EXECUTABLE_PATH=            ← only needed locally, not used in prod
+```
+
+---
+
+Now help me with my request. Do not suggest rewriting systems that already work.
+When suggesting fixes, be surgical — modify only what needs to change.
+Always follow the theme engine rules. Always prefer server components.

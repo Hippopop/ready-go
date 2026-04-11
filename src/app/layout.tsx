@@ -42,7 +42,10 @@ export default async function RootLayout({
         />
         <link id="ready-go-fonts" rel="stylesheet" href={fontUrl} />
       </head>
-      <body className="min-h-full flex flex-col bg-background text-app-text font-body transition-colors duration-[var(--transition-speed)]">
+      <body 
+        className="min-h-full flex flex-col bg-background text-app-text font-body transition-colors duration-(--transition-speed)"
+        suppressHydrationWarning
+      >
         <ThemeProvider initialTheme={theme}>{children}</ThemeProvider>
       </body>
     </html>
